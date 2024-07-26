@@ -2,10 +2,11 @@
 
 ## Members
 
-- Mr Ng
-- Ghostttt
-- Member 3
-- Member 4
+- Ekekkeke
+- Josh
+- Eth
+- Wong
+- Cho
 
 <Description of your project>
 Testing
