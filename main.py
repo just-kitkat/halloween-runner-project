@@ -21,7 +21,7 @@ e.g.
 - dungeon
 - armoury
 """
-
+from shop import display_shop
 # When the game first starts...
 # Introduction paragraph
 display_introduction()
@@ -44,5 +44,7 @@ while True:
 
     "you can use items, however the more actions you take the higher the chance that monsters would come back in"
     display_break_message() # allow users to eat and use items
+
+    display_shop()
 
     display_room_options()
