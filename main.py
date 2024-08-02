@@ -36,16 +36,18 @@ player = create_player()
 class Game:
     def __init__(self):
         self.run = True
+        self.player = Player()
     while True:
     # create monster, items in the room, create new doors that link to other rooms
-        current_room = Dungeon()
-        current_room.getMonster()
-        player.fightMonster()
-        player.collectItems()
-        player.breakAction()
-        current_room.displayNewRooms()
+        dungeon = room.Dungeon()
+        monster = dungeon.get_monster() #call a monster
+        fight = player.fight_monster(monster) #player 
+        if fight:
+            player.collect_items()
+        else:
+            player.fail_message()
+            break
+        player.break_action()
+        dungeon.generate_new_rooms()
+        dungeon.display_new_rooms()
         player.chooseRoom()
-        "you can use items, however the more actions you take the higher the chance that monsters would come back in"# Include this in the player.breakAction() method
-        display_break_message() # allow users to eat and use items
-    
-        display_room_options()
