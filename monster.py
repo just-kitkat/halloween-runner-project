@@ -8,20 +8,19 @@ class monster:
     #fists is the basic weapon assigned to each enemy, child class of weapon
     self.weapon = fists()
     #damage is done inside weapon class
-  def attack(self,entity):
-    bool = self.weapon.attack(entity)
+  def monster_attack_player(self,player):
+    bool = self.weapon.attack(player)
     if bool:
       print(f"{self.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
     else:
       print(f"{self.name}\'s attack missed!")
-      
 
-  def block(self,entity):
-    bool = entity.attack(self)
+  def player_attack_monster(self,player):
+    bool = player.weapon.attack(self)
     if bool:
-      print(f"{self.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
+      print(f"{player.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
     else:
-      print(f"{self.name}\'s attack missed!")
+      print(f"{player.name}\'s attack missed!")
 
   def get_health(self):
     return self.health
