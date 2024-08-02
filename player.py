@@ -7,6 +7,9 @@ class Player:
         self.health -= hp
 
     def fight_monster(self, monster) -> bool:
+        if monster is None:
+            print("There are no monsters in this room!")
+            return True
         turn = "attack"
         while self.health > 0 and monster.get_health() > 0:
             if turn == attack:

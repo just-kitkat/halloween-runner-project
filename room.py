@@ -19,6 +19,9 @@ class Room:
             count += 1
         return msg
 
+    def get_num_next_rooms(self):
+        return len(self.next_rooms)
+
 class Dungeon:
     def __init__(self):
         # When the game first starts, a room is created.
@@ -31,6 +34,9 @@ class Dungeon:
     def is_room_cleared(self):
         return self.current_room.cleared
 
+    def.get_nums_next_rooms(self):
+        return self.current_room.get_num_next_rooms()
+
     def get_next_rooms_message(self):
         return self.current_room.get_next_rooms()
 
@@ -41,7 +47,7 @@ class Dungeon:
 
     def clear_room(self):
         self.current_room.cleared = True
-        self.__generate_next_rooms()
+        return self.__generate_next_rooms()
 
     def enter_room(self, idx): # idx should be 1-indexed
         self.current_room = self.current_room.next_rooms[idx - 1]
