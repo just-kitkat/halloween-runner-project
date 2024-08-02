@@ -14,7 +14,7 @@ doors attribute will be a list of Room objects
 - special events
 parent class to room types
 e.g.
-- kitchen
+- k    itchen
 - main hall
 - bathroom
 - cellar
