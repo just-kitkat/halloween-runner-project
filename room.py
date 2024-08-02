@@ -34,7 +34,7 @@ class Dungeon:
     def is_room_cleared(self):
         return self.current_room.cleared
 
-    def.get_nums_next_rooms(self):
+    def get_nums_next_rooms(self):
         return self.current_room.get_num_next_rooms()
 
     def get_next_rooms_message(self):
