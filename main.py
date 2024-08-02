@@ -44,6 +44,7 @@ while True:
         player.fail_message()
         break
     player.break_action()
-    dungeon.generate_new_rooms()
-    dungeon.display_new_rooms()
-    player.chooseRoom()
+    dungeon.clear_room()
+    dungeon.get_new_rooms_message()
+    choose_room = int(input("Which room does your heart desire?:"))
+    if (choose_room < len())
