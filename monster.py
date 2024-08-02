@@ -1,13 +1,17 @@
 import random
 import math
 class monster:
-  def __init__(self,name):
+  def __init__(self):
     #name can be seperate from monster type
-    self.name = name
-    self.health = 0
+    spooky_names = ["Morticia", "Vlad", "Lilith", "Raven", "Draven", "Seraphina", "Elvira", "Damien", "Hecate", "Bram"]
+    spooky_surnames = ["Blackwood", "Nightshade", "Graves", "Vesper", "Thorn", "Shadow", "Bloodworth", "Moonfall", "Darkmore", "Grimwood"]
+    self.name = spooky_names[random.randint(0,len(spooky_names))]+" "+ spooky_surnames[random.randint(0,len(spooky_surnames))]
+
     #fists is the basic weapon assigned to each enemy, child class of weapon
     self.weapon = fists()
-    #damage is done inside weapon class
+    self.health = 0
+
+  #damage is done inside weapon class
   def monster_attack_player(self,player):
     bool = self.weapon.attack(player)
     if bool:
