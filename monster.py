@@ -23,6 +23,9 @@ class monster:
     else:
       print(f"{self.name}\'s attack missed!")
 
+  def get_health(self):
+    return self.health
+
 
 class skeleton(monster):
   def __init__(self,multiplier,name):
