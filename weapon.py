@@ -17,3 +17,9 @@ class weapon:
       #might want to have a block function for the player, give a % reduction in dmg with the cost of a turn, need to modify damage taken
       entity.reduce_health(self.damage)
       return True
+
+class fists(weapon):
+  def __init__(self):
+    self.damage = 1
+    self.durability = "Infinite"
+    self.name = "My Fists"
