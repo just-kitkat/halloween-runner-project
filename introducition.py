@@ -28,7 +28,7 @@ def player_name():
         else:
             yes = False
     name = name.strip()
-    name = name[0].upper() + name[1:].lower()
+    name = name.title()
     return name
 
 def game_start(name):
