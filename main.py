@@ -1,3 +1,4 @@
+import methods 
 """
 Player class:
 - name
@@ -26,8 +27,6 @@ e.g.
 # Introduction paragraph
 display_introduction()
 
-# hello eket/ will there be a class for player that includes the health of the player and the items it has and stuff stuff
-
 # Blackout, spawn in dungeon, game loop begins
 display_blackout_message()
 
@@ -36,13 +35,14 @@ player = create_player()
 # Main game loop 
 while True:
     # create monster, items in the room, create new doors that link to other rooms
-    initialise_room()
-
-    fight_monster()
-
-    collect_items()
-
-    "you can use items, however the more actions you take the higher the chance that monsters would come back in"
+    current_room = Dungeon()
+    current_room.getMonster()
+    player.fightMonster()
+    player.collectItems()
+    player.breakAction()
+    current_room.displayNewRooms()
+    player.chooseRoom()
+    "you can use items, however the more actions you take the higher the chance that monsters would come back in"# Include this in the player.breakAction() method
     display_break_message() # allow users to eat and use items
 
     display_room_options()
