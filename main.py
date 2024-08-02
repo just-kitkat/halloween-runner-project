@@ -1,4 +1,4 @@
-import methods 
+import room 
 """
 Player class:
 - name
@@ -33,16 +33,19 @@ display_blackout_message()
 # Create player object
 player = create_player()
 # Main game loop 
-while True:
+class Game:
+    def __init__(self):
+        self.run = True
+    while True:
     # create monster, items in the room, create new doors that link to other rooms
-    current_room = Dungeon()
-    current_room.getMonster()
-    player.fightMonster()
-    player.collectItems()
-    player.breakAction()
-    current_room.displayNewRooms()
-    player.chooseRoom()
-    "you can use items, however the more actions you take the higher the chance that monsters would come back in"# Include this in the player.breakAction() method
-    display_break_message() # allow users to eat and use items
-
-    display_room_options()
+        current_room = Dungeon()
+        current_room.getMonster()
+        player.fightMonster()
+        player.collectItems()
+        player.breakAction()
+        current_room.displayNewRooms()
+        player.chooseRoom()
+        "you can use items, however the more actions you take the higher the chance that monsters would come back in"# Include this in the player.breakAction() method
+        display_break_message() # allow users to eat and use items
+    
+        display_room_options()
