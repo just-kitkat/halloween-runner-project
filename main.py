@@ -45,6 +45,8 @@ while True:
         break
     player.break_action()
     dungeon.clear_room()
-    dungeon.get_new_rooms_message()
+    num_of_rooms = dungeon.get_nums_next_room()
     choose_room = int(input("Which room does your heart desire?:"))
-    if (choose_room < len())
+    while (choose_room < num_of_rooms) or (choose_room > num_of_rooms):
+        choose_room = int(input("Wrong answer. \nWhich room does your heart desire?:"))
+    dungeon.enter_room(choose_room)
