@@ -13,3 +13,14 @@ class armour:
 
   def lose_durability(self,multi):
     self.durability -= math.ceil(1*multi)
+
+"""
+Class helmet
+reduces crit chance
+Class chestplate
+dmg reduction
+Class leggings
+dmg reduction
+Class boots
+more number of moves, "agility"
+"""
