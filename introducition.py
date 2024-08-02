@@ -3,6 +3,19 @@ def error_msg():
 
 def display_startingmsg():
     print("Welcome to Eek MUD! Are you ready for an adventure? Let's go!")
+    ye = True
+    while ye:
+        char = input("Press C to start and Press E to exit. ")
+        char = char.strip().upper()
+        if char not in ['C', 'E']:
+            error_msg()
+        else:
+            ye = False
+    if char == 'C':
+        game_start()
+    elif char == 'E':
+        print("Thanks for playing!")
+        return False
 
 def player_name():
     yes = True
@@ -17,22 +30,10 @@ def player_name():
     return name
 
 def game_start():
-    ye = True
-    while ye:
-        char = input("Press C to start and Press E to exit. ")
-        char = char.strip().upper()
-        if char not in ['C', 'E']:
-            error_msg()
-        else:
-            ye = False
-    if char == 'C':
         name = player_name()
         print(f'Welcome {name}! Enjoy the game!')
         display_intromsg(name)
         the_three_actions(name)
-    elif char == 'E':
-        print("Thanks for playing!")
-        return False
 
 def display_intromsg(name):
     print("Tonight is October 31st, the night known as \nHalloween. \nAfter escaping your friend's raucous Halloween party, you find yourself aimlessly wandering deeper into the shadowy woods. The darkness thickens, enveloping you in an eerie silence. \n ... \nHours pass in your solitary journey until you stumble upon a colossal, foreboding castle. It looks disturbingly familiar, and with a chill, you realize \n ... \nit is the infamous Nanyang Mansion. Whispers of children vanishing within its walls have haunted you, stories you always dismissed and never believed in. \n \nTonight, you will uncover the truth. Tonight, \nyou will prove them wrong.")
@@ -73,7 +74,3 @@ def action_2():
 
 def blackout_msg():
     print('As you turn around, something hard strikes the back of your head. Pain explodes through your skull, and your vision blurs. The last thing you see before everything goes black is the cold, dark corridor closing in around you. \n...\n')
-
-def start_the_game():
-    display_startingmsg()
-    game_start()
