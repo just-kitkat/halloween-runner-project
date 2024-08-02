@@ -1,5 +1,5 @@
 import random
-class weapon:
+class Weapon:
   def __init__(self,name):
     self.damage = 0
     self.durability = 0
@@ -18,7 +18,7 @@ class weapon:
       entity.reduce_health(self.damage)
       return True
 
-class fists(weapon):
+class Fists(Weapon):
   def __init__(self):
     self.damage = 1
     self.durability = "Infinite"

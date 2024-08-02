@@ -1,4 +1,5 @@
 import random
+from monster import Monster
 
 class Room:
     def __init__(self, previous_room, room_type="placeholder room type"):
@@ -6,7 +7,9 @@ class Room:
         self.type = room_type
         self.previous_room = previous_room
         self.cleared = False
-        self.monster = None # Monster object
+        self.monster = Monster() # Monster object
+        if previous_room is None:
+            self.monster = None
 
     def get_next_rooms(self):
         if len(self.next_rooms) == 0:
