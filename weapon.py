@@ -6,7 +6,7 @@ class Weapon:
     self.defense = 0
     self.name = name
     #accuracy is a integer from 1-100, acts as percentage chance of missing
-    self.accuracy = 1
+    self.accuracy = 100
   #generalised for both enemies and the player
   def attack(self,entity):
     if random.randint(1,100)>self.accuracy:
