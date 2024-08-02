@@ -14,4 +14,5 @@ class Player:
             else:
                 monster.monster_attack_player()
             turn = "defend" if turn == "attack" else attack
+        return self.health > 0
             
