@@ -1,4 +1,5 @@
 import room 
+import introduction as intro
 """
 Player class:
 - name
@@ -25,8 +26,7 @@ e.g.
 
 # When the game first starts...
 # Introduction paragraph
-display_introduction()
-
+intro.start_the_game()
 # Blackout, spawn in dungeon, game loop begins
 display_blackout_message()
 
