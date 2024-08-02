@@ -14,5 +14,5 @@ class weapon:
       return False
     else:
       #attack hit
-      entity.reduce_health()
+      entity.reduce_health(self.damage)
       return True

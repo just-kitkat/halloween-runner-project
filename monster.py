@@ -7,6 +7,7 @@ class monster:
     self.health = 0
     #fists is the basic weapon assigned to each enemy, child class of weapon
     self.weapon = fists()
+    #damage is done inside weapon class
   def attack(self,entity):
     bool = self.weapon.attack(entity)
     if bool:
