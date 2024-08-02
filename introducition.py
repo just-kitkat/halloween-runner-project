@@ -1,8 +1,11 @@
+import time
+
 def error_msg():
     print('I\'m not sure I understand.')
 
 def display_startingmsg():
     print("Welcome to Eek MUD! Are you ready for an adventure? Let's go!")
+    time.sleep(2)
     ye = True
     while ye:
         char = input("Press C to start and Press E to exit. ")
@@ -14,6 +17,7 @@ def display_startingmsg():
     if char == 'C':
         name = player_name()
         print(f'Welcome {name}! Enjoy the game!')
+        time.sleep(4)
         game_start(name)
     elif char == 'E':
         print("Thanks for playing!")
@@ -37,11 +41,20 @@ def game_start(name):
         the_three_actions(name)
 
 def display_intromsg(name):
-    print("Tonight is October 31st, the night known as \nHalloween. \nAfter escaping your friend's raucous Halloween party, you find yourself aimlessly wandering deeper into the shadowy woods. The darkness thickens, enveloping you in an eerie silence. \n ... \nHours pass in your solitary journey until you stumble upon a colossal, foreboding castle. It looks disturbingly familiar, and with a chill, you realize \n ... \nit is the infamous Nanyang Mansion. Whispers of children vanishing within its walls have haunted you, stories you always dismissed and never believed in. \n \nTonight, you will uncover the truth. Tonight, \nyou will prove them wrong.")
+    print("Tonight is October 31st, the night known as \nHalloween."
+    time.sleep(1)
+    print("After escaping your friend's raucous Halloween party, you find yourself aimlessly wandering deeper into the shadowy woods. The darkness thickens, enveloping you in an eerie silence.")
+    print("...")
+    time.sleep(2)
+    print("Hours pass in your solitary journey until you stumble upon a colossal, foreboding castle. It looks disturbingly familiar, and with a chill, you realize \n ... \nit is the infamous Nanyang Mansion. Whispers of children vanishing within its walls have haunted you, stories you always dismissed and never believed in.")
+    time.sleep(1)  
+    print("Tonight, you will uncover the truth. Tonight, \nyou will prove them wrong.")
     print('')
+    time.sleep(2)
     print('Are you up for the challenge?' +
                     '\n1)yes \n2)yes \n3)yes')
     input(f'{name}\'s input: ')
+    time.sleep(3)
     print('You walk up the long flight of stairs that lead up to a pair of large, mahogany doors. \nYou push the doors open slowly, and a large creak echoes through the expansive space. A dark, forbidding hall greets you. \nIt’s musty, and cobwebs lie all around. \nSmoke slowly penetrates through the floor and dust fills the atmosphere of the quiet, sordid expanse. At the corner of your eye, you see a red object lurking in the dark, at the same time, you feel something swift past behind you.')
 
 def the_three_actions(name):
@@ -60,7 +73,8 @@ def the_three_actions(name):
             action_2()
         elif option1 in['3', '3)']:
             action_3()
-
+        time.sleep(2)
+    time.sleep(3)
     blackout_msg()
 
 
