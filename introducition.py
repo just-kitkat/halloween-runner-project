@@ -12,7 +12,9 @@ def display_startingmsg():
         else:
             ye = False
     if char == 'C':
-        game_start()
+        name = player_name()
+        print(f'Welcome {name}! Enjoy the game!')
+        game_start(name)
     elif char == 'E':
         print("Thanks for playing!")
         return False
@@ -29,9 +31,8 @@ def player_name():
     name = name[0].upper() + name[1:].lower()
     return name
 
-def game_start():
-        name = player_name()
-        print(f'Welcome {name}! Enjoy the game!')
+def game_start(name):
+        
         display_intromsg(name)
         the_three_actions(name)
 
