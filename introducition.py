@@ -21,7 +21,7 @@ def display_startingmsg():
         game_start(name)
     elif char == 'E':
         print("Thanks for playing!")
-        return False
+        return 
 
 def player_name():
     yes = True
@@ -36,9 +36,8 @@ def player_name():
     return name
 
 def game_start(name):
-        
-        display_intromsg(name)
-        the_three_actions(name)
+    display_intromsg(name)
+    the_three_actions(name)
 
 def display_intromsg(name):
     print("Tonight is October 31st, the night known as \nHalloween."
