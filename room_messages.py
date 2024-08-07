@@ -24,12 +24,13 @@ msg = {
                "Keep going. It’s the only way through.",
                "Good luck…"
               ],
-    "dungeon": ["Hmm... everything's so isolated here.",
+    "dungeon": ["Hmm... everything's so creepy here.",
                 "Welcome to the dungeon. Many of the vilest beings have been condemned here for the most heinous acts.",
-                "No one has entered here and lived safely ever since.",
-                "Unleash your bravest soul as you face the monstrous creatures that spontaneously spawn."
+                "Few who entered here have gone out ever since.",
+                "Unleash your bravest soul as you face the monstrous creatures that spontaneously appear."
                ],
     "armoury": ["What a multitude of outfits for the royal servants!",
                "Makes you feel like a knight when you wear them, right?",
-               "Maybe they'll be of use as you fight the numerous monsters that will appear in this room. You never know."]    
+               "Maybe they'll be of use as you fight the numerous monsters that will appear in this room.",
+               "The possibilities are yours to discover. Given the situation, what will you do? The future lies in your hands."]    
 }
