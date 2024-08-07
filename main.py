@@ -1,3 +1,6 @@
+import room 
+# import introduction as intro
+import player
 """
 Player class:
 - name
@@ -14,7 +17,7 @@ doors attribute will be a list of Room objects
 - special events
 parent class to room types
 e.g.
-- kitchen
+- k    itchen
 - main hall
 - bathroom
 - cellar
@@ -24,17 +27,14 @@ e.g.
 from shop import display_shop
 # When the game first starts...
 # Introduction paragraph
-display_introduction()
-
-# hello eket/ will there be a class for player that includes the health of the player and the items it has and stuff stuff
-
+# intro.start_the_game()
 # Blackout, spawn in dungeon, game loop begins
-display_blackout_message()
 
 # Create player object
-player = create_player()
+player = player.Player()
 # Main game loop 
 while True:
+# Intro
     # create monster, items in the room, create new doors that link to other rooms
     initialise_room()
 
@@ -48,3 +48,20 @@ while True:
     display_shop()
 
     display_room_options()
+# create monster, items in the room, create new doors that link to other rooms
+    dungeon = room.Dungeon()
+    monster = dungeon.get_monster() #call a monster
+    fight = player.fight_monster(monster) #player 
+    # if fight:
+    #     player.collect_items()
+    # else:
+    #     player.fail_message()
+    #     break
+    # player.break_action()
+    print(dungeon.clear_room())
+    num_of_rooms = dungeon.get_nums_next_rooms()
+    choose_room = int(input("Which room does your heart desire?:"))
+    while (choose_room < 1) or (choose_room > num_of_rooms):
+        choose_room = int(input("Wrong answer. \nWhich room does your heart desire?:"))
+    dungeon.enter_room(choose_room)
+
