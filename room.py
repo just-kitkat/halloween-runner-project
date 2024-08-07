@@ -1,10 +1,13 @@
 import random
 from monster import Monster
+from room_messages import msg
 
 class Room:
-    def __init__(self, previous_room, room_type="placeholder room type"):
+    def __init__(self, previous_room, room_type=None):
         self.next_rooms = []
         self.type = room_type
+        if self.type is None:
+            self.type = random.choice(list(msg.keys()))
         self.previous_room = previous_room
         self.cleared = False
         self.monster = Monster() # Monster object
@@ -24,6 +27,7 @@ class Room:
 
     def get_num_next_rooms(self):
         return len(self.next_rooms)
+        
 
 class Dungeon:
     def __init__(self):
@@ -39,6 +43,12 @@ class Dungeon:
 
     def get_nums_next_rooms(self):
         return self.current_room.get_num_next_rooms()
+
+    def get_room_intro_message(self):
+        room_type = self.current_room.type
+        if room_type is not None:
+            return random.choice(msg[room_type])
+        raise ValueError("self.current_room.type has an invalid valie of", room_type)
 
     def get_next_rooms_message(self):
         return self.current_room.get_next_rooms()
@@ -70,6 +80,7 @@ if __name__ == "__main__":
     # print(dungeon.enter_previous_room())
     print(dungeon.get_next_rooms_message())
     dungeon.enter_room(1)
+    print(dungeon.display)
     dungeon.clear_room()
     print(dungeon.get_next_rooms_message())
     dungeon.enter_previous_room()
