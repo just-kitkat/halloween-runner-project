@@ -24,7 +24,7 @@ e.g.
 - dungeon
 - armoury
 """
-
+from shop import display_shop
 # When the game first starts...
 # Introduction paragraph
 # intro.start_the_game()
@@ -34,6 +34,20 @@ e.g.
 player = player.Player()
 # Main game loop 
 while True:
+# Intro
+    # create monster, items in the room, create new doors that link to other rooms
+    initialise_room()
+
+    fight_monster()
+
+    collect_items()
+
+    "you can use items, however the more actions you take the higher the chance that monsters would come back in"
+    display_break_message() # allow users to eat and use items
+
+    display_shop()
+
+    display_room_options()
 # create monster, items in the room, create new doors that link to other rooms
     dungeon = room.Dungeon()
     monster = dungeon.get_monster() #call a monster
@@ -50,3 +64,4 @@ while True:
     while (choose_room < 1) or (choose_room > num_of_rooms):
         choose_room = int(input("Wrong answer. \nWhich room does your heart desire?:"))
     dungeon.enter_room(choose_room)
+
