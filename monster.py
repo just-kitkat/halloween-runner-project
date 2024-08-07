@@ -2,11 +2,11 @@ import random
 import math
 from weapon import Weapon,create_weapon,all_weapons
 class Monster:
-    def __init__(self,data):
-        self.name = name()
+    def __init__(self,name,data):
+        self.name = name
         #fists is the basic weapon assigned to each enemy, child class of weapon
-        self.weapon = create_weapon("Fists")
-        self.health = 0
+        self.weapon = create_weapon(data["label"])
+        self.health = data[health]
 
     #damage is done inside weapon class
     def monster_attack_player(self,player):
@@ -31,4 +31,4 @@ class Monster:
 
 def create_monster(label: str) -> Monster:
     data = monster_data[label]
-    return Weapon(data)
+    return Monster(data)
