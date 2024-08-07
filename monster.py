@@ -36,8 +36,14 @@ class Monster:
 
 
 class Skeleton(Monster):
-    def __init__(self,multiplier,name):
+    def __init__(self,multiplier=1):
+        super().__init__()
         #subject to change
         self.health = math.ceil(random.randint(1,5)*multiplier)
         #ranged is a child class of parent weapon
-        self.weapon = ranged(name)
+        # self.weapon = ranged(name)
+        self.mob = "skeleton"
+
+
+
+monsters_list = [Skeleton]

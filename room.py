@@ -1,5 +1,5 @@
 import random
-from monster import Monster
+from monster import monsters_list
 from room_messages import msg
 
 class Room:
@@ -10,7 +10,7 @@ class Room:
             self.type = random.choice(list(msg.keys()))
         self.previous_room = previous_room
         self.cleared = False
-        self.monster = Monster() # Monster object
+        self.monster = random.choice(monsters_list)() # Monster object
         if previous_room is None:
             self.monster = None
 
@@ -21,7 +21,7 @@ class Room:
         msg = f"There are {len(self.next_rooms)} rooms.\n"
         count = 1
         for room in self.next_rooms:
-            msg += f"{count}. {self.type}\n"
+            msg += f"{count}. {room.type}\n"
             count += 1
         return msg
 
@@ -64,6 +64,9 @@ class Dungeon:
 
     def enter_room(self, idx): # idx should be 1-indexed
         self.current_room = self.current_room.next_rooms[idx - 1]
+
+    def has_previous_room(self) -> bool:
+        return self.current_room.previous_room is not None
 
     def enter_previous_room(self):
         if self.current_room.previous_room is None:

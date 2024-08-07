@@ -1,5 +1,5 @@
 import room 
-# import introduction as intro
+import introduction
 import player
 """
 Player class:
@@ -24,7 +24,7 @@ e.g.
 - dungeon
 - armoury
 """
-from shop import display_shop
+# from shop import display_shop
 # When the game first starts...
 # Introduction paragraph
 # intro.start_the_game()
@@ -32,36 +32,36 @@ from shop import display_shop
 
 # Create player object
 player = player.Player()
+# introduction.display_startingmsg()
+dungeon = room.Dungeon()
+
 # Main game loop 
 while True:
-# Intro
-    # create monster, items in the room, create new doors that link to other rooms
-    initialise_room()
+    # Enter a room
+    print(dungeon.get_room_intro_message())
 
-    fight_monster()
-
-    collect_items()
-
-    "you can use items, however the more actions you take the higher the chance that monsters would come back in"
-    display_break_message() # allow users to eat and use items
-
-    display_shop()
-
-    display_room_options()
-# create monster, items in the room, create new doors that link to other rooms
-    dungeon = room.Dungeon()
-    monster = dungeon.get_monster() #call a monster
-    fight = player.fight_monster(monster) #player 
-    # if fight:
-    #     player.collect_items()
-    # else:
-    #     player.fail_message()
-    #     break
-    # player.break_action()
-    print(dungeon.clear_room())
+    monster = dungeon.get_monster()
+    if monster is not None:
+        print(f"There is a {monster.mob} here...")
+        print("It's name is", monster.name)
+    win = player.fight_monster(monster)
+    if win == False: # win may be True, False or None
+        print("You died...")
+        break
+    if win is not None:
+        print("You won the fight!")
+    dungeon.clear_room()
     num_of_rooms = dungeon.get_nums_next_rooms()
-    choose_room = int(input("Which room does your heart desire?:"))
-    while (choose_room < 1) or (choose_room > num_of_rooms):
-        choose_room = int(input("Wrong answer. \nWhich room does your heart desire?:"))
+    print(f"There are {num_of_rooms} rooms to enter. \nYou may also go back to the previous room by entering 'back'.")
+    print(dungeon.get_next_rooms_message())
+
+    choose_room = input("Which room does your heart desire?:")
+    while not (choose_room.isdigit() or choose_room == "back" and dungeon.has_previous_room):
+        choose_room = input("There is no previous room to go to...\nEnter a room to enter: ")
+    if choose_room == "back":
+        dungeon.enter_previous_room()
+        print("You have entered the previous room...")
+        continue
+    choose_room = int(choose_room)
     dungeon.enter_room(choose_room)
 
