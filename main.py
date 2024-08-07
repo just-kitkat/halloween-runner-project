@@ -1,6 +1,7 @@
 import room 
-# import introduction as intro
+import introducition as intro
 import player
+import input_checker as check
 """
 Player class:
 - name
@@ -24,32 +25,16 @@ e.g.
 - dungeon
 - armoury
 """
-from shop import display_shop
+# from shop import display_shop
 # When the game first starts...
 # Introduction paragraph
-# intro.start_the_game()
+start = intro.display_startingmsg()
 # Blackout, spawn in dungeon, game loop begins
-
-# Create player object
-player = player.Player()
+player = player.Player()# Create player object
 # Main game loop 
-while True:
-# Intro
-    # create monster, items in the room, create new doors that link to other rooms
-    initialise_room()
-
-    fight_monster()
-
-    collect_items()
-
-    "you can use items, however the more actions you take the higher the chance that monsters would come back in"
-    display_break_message() # allow users to eat and use items
-
-    display_shop()
-
-    display_room_options()
+dungeon = room.Dungeon() #initialize dungeon
+while start:
 # create monster, items in the room, create new doors that link to other rooms
-    dungeon = room.Dungeon()
     monster = dungeon.get_monster() #call a monster
     fight = player.fight_monster(monster) #player 
     # if fight:

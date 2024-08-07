@@ -8,7 +8,7 @@ def check_input_str(question, expected_input, name):
     ye = True
     while ye:
         print(question)
-        user_input = (f'{name}\'s input: ')
+        user_input = input(f'{name}\'s input: ')
         user_input = user_input.strip().upper()
         if user_input not in expected_input:
           error_msg()
@@ -23,17 +23,17 @@ def check_input_num(question, expected_input, name):
     ye = True
     while ye:
       print(question)
-      user_input = (f'{name}\'s input: ')
+      user_input = input(f'{name}\'s input: ')
       user_input = user_input.strip()
       if not user_input.isdecimal():
           error_msg()
-      elif user_input not in expected_input():
+      elif user_input not in expected_input:
           error_msg()
       elif user_input in ['', ' ']:
           error_msg()
       else:
           ye = False
-    return user_input
+    return int(user_input)
 
 def check_blankinput(question):
     """
