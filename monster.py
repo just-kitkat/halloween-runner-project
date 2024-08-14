@@ -29,6 +29,10 @@ class Monster:
     def get_health(self):
         return self.health
 
+monster_data = {
+    ""
+}
+
 def create_monster(label: str) -> Monster:
     data = monster_data[label]
     return Monster(data)
