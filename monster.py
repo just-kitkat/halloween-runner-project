@@ -15,7 +15,7 @@ class Monster:
 
     #damage is done inside weapon class
     def monster_attack_player(self,player):
-        bool = self.weapon.attack(player)
+        bool = player.weapon.attack(player)
         if bool:
             print(f"{self.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
         else:
@@ -33,6 +33,9 @@ class Monster:
 
     def get_health(self):
         return self.health
+
+    def reduce_health(self, hp):
+        self.health -= hp
 
 
 class Skeleton(Monster):

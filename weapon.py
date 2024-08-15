@@ -20,6 +20,7 @@ class Weapon:
 
 class Fists(Weapon):
   def __init__(self):
+    super().__init__(self)
     self.damage = 1
     self.durability = "Infinite"
     self.name = "My Fists"
