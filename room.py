@@ -60,6 +60,8 @@ class Dungeon:
         return self.get_next_rooms_message()
 
     def clear_room(self):
+        if self.current_room.cleared:
+            return self.get_next_rooms_message()
         self.current_room.cleared = True
         return self.__generate_next_rooms()
 

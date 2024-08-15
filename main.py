@@ -41,6 +41,9 @@ while True:
     print(f"You are in the {dungeon.get_room_type()}")
     print(dungeon.get_room_intro_message())
 
+    # Display monster and start fighting simulation
+    # This does not require any player interaction for now.
+    # It runs automatically and the result of the fight will be displayed in the console immediately.
     monster = dungeon.get_monster()
     if monster is not None:
         print(f"There is a {monster.mob} here...")
@@ -57,7 +60,7 @@ while True:
     print(dungeon.get_next_rooms_message())
 
     choose_room = input("Which room does your heart desire?:")
-    print(dungeon.has_previous_room())
+
     while not (choose_room.isdigit() or choose_room == "back" and dungeon.has_previous_room):
         choose_room = input("Invalid.\nEnter a room to enter: ")
     if choose_room == "back":
