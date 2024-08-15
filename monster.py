@@ -1,6 +1,5 @@
 import random
-import math
-from weapon import Weapon,create_weapon,all_weapons
+from weapon import create_weapon
 
 def monster_name_generation():
     first_name = ['Grim', 'Mortis', 'Thorne', 'Vex', 'Hex', 'Nyx', 'Dread', 'Wraith', 'Shade', 'Gloom', 'Ethan', 'Seah', 'Joshua', 'Wong', 'Cho']
