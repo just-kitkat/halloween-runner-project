@@ -1,30 +1,35 @@
 import random
-import math
-from weapon import Fists
+from weapon import create_weapon
+
+def monster_name_generation():
+    first_name = ['Grim', 'Mortis', 'Thorne', 'Vex', 'Hex', 'Nyx', 'Dread', 'Wraith', 'Shade', 'Gloom', 'Ethan', 'Seah', 'Joshua', 'Wong', 'Cho']
+    last_name = ['Nightshade', 'Bloodbane', 'Frostmourne', 'Grimspike', 'Darkwhisper', 'Deathclaw', 'Skullrend', 'Shadowfang', 'Wraithborn', 'Ironshade', 'Wang', 'Eket', 'Zijia', 'Zin']
+    lenf = len(first_name)
+    lenl = len(last_name)
+    num1 = random.randint(0, lenf-1)
+    num2 = random.randint(0, lenl-1)
+    monster_name = f'{first_name[num1]} {last_name[num2]}'
+    return monster_name
 
 class Monster:
-    def __init__(self):
-        #name can be seperate from monster type
-        spooky_names = ["Morticia", "Vlad", "Lilith", "Raven", "Draven", "Seraphina", "Elvira", "Damien", "Hecate", "Bram"]
-        spooky_surnames = ["Blackwood", "Nightshade", "Graves", "Vesper", "Thorn", "Shadow", "Bloodworth", "Moonfall", "Darkmore", "Grimwood"]
-        self.name = spooky_names[random.randint(0,len(spooky_names)-1)]+" "+ spooky_surnames[random.randint(0,len(spooky_surnames)-1)]
-
-        #fists is the basic weapon assigned to each enemy, child class of weapon
-        self.weapon = Fists()
-        self.health = 0
+    def __init__(self,monster_data):
+        self.name = monster_name_generation()
+        self.weapon = create_weapon(random.choice(monster_data["weapon_label"]))
+        self.health = monster_data["health"]
+        self.type = monster_data["type"]
 
     #damage is done inside weapon class
     def monster_attack_player(self,player):
-        bool = player.weapon.attack(player)
+        bool = self.weapon.attack(player)
         if bool:
-            print(f"{self.name}\'s attack hit, [{self.weapon.damage}] damage dealt")
+            print(f"{self.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
         else:
             print(f"{self.name}\'s attack missed!")
 
     def player_attack_monster(self,player):
         bool = player.weapon.attack(self)
         if bool:
-            print(f"{player.name}\'s attack hit, [{self.weapon.damage}] damage dealt")
+            print(f"{player.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
         else:
             print(f"{player.name}\'s attack missed!")
 
@@ -34,19 +39,32 @@ class Monster:
     def get_health(self):
         return self.health
 
-    def reduce_health(self, hp):
-        self.health -= hp
+monster_data = {
+    "skeleton":{
+        "type":"Skeleton",
+        "health": 3,
+        "weapon_label":["fists","crude bow","crude bow","cutlery dagger"]
+    },
+    "zombie":{
+        "type":"Zombie",
+        "health":5,
+        "weapon_label":["fists","cutlery dagger","wooden spear","wooden sword"]
+    },
+    "vampire":{
+        "type":"Vampire",
+        "health":6,
+        "weapon label":["wooden sword","wooden sword","cutlery dagger"]
+    },
+    "ghost":{
+        "type":"Ghost",
+        "health":2,
+        "weapon label":["fists","fists","cutlery dagger"]
+    }
+}
 
+def create_monster(label: str) -> Monster:
+    data = monster_data[label]
+    return Monster(data)
 
-class Skeleton(Monster):
-    def __init__(self,multiplier=1):
-        super().__init__()
-        #subject to change
-        self.health = math.ceil(random.randint(1,5)*multiplier)
-        #ranged is a child class of parent weapon
-        # self.weapon = ranged(name)
-        self.mob = "skeleton"
-
-
-
-monsters_list = [Skeleton]
+def all_monsters():
+    return list(monster_data.keys())

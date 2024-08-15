@@ -1,5 +1,5 @@
 import random
-from monster import monsters_list
+from monster import create_monster,all_monsters
 from room_messages import msg
 
 class Room:
@@ -10,7 +10,8 @@ class Room:
             self.type = random.choice(list(msg.keys()))
         self.previous_room = previous_room
         self.cleared = False
-        self.monster = random.choice(monsters_list)() # Monster object
+        #updated line below
+        self.monster = create_monster(random.choice(all_monsters())) # Monster object
         if previous_room is None:
             self.monster = None
 
