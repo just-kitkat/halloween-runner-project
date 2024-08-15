@@ -11,7 +11,7 @@ class Room:
         self.previous_room = previous_room
         self.cleared = False
         #updated line below
-        self.monster = create_monster(random.choice(all_monsters())) # Monster object
+        self.monster = None #create_monster(random.choice(all_monsters())) #Monster object
         if previous_room is None:
             self.monster = None
 

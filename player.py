@@ -1,10 +1,11 @@
-import weapon
+from weapon import create_weapon
 
 class Player:
     def __init__(self, health=100):
         self.health = health
         self.items = []
-        self.weapon = weapon.Fists()
+        #edited line below
+        self.weapon = create_weapon("fists")
         self.name = "placeholder"
 
     def reduce_health(self, hp):
