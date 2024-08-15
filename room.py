@@ -76,15 +76,22 @@ class Dungeon:
             self.current_room = self.current_room.previous_room
         return cleared
 
+    def get_room_type(self):
+        return self.current_room.type
+
 # The below code is used for testing, please do not remove
 if __name__ == "__main__":
     dungeon = Dungeon()
     dungeon.clear_room()
     # print(dungeon.enter_previous_room())
+    print(dungeon.get_room_intro_message())
     print(dungeon.get_next_rooms_message())
     dungeon.enter_room(1)
-    print(dungeon.display)
+    # print(dungeon.display)
     dungeon.clear_room()
+    print(dungeon.get_room_intro_message())
     print(dungeon.get_next_rooms_message())
     dungeon.enter_previous_room()
+    print(dungeon.get_room_type())
+    print(dungeon.get_room_intro_message())
     print(dungeon.get_next_rooms_message())

@@ -38,6 +38,7 @@ dungeon = room.Dungeon()
 # Main game loop 
 while True:
     # Enter a room
+    print(f"You are in the {dungeon.get_room_type()}")
     print(dungeon.get_room_intro_message())
 
     monster = dungeon.get_monster()
@@ -56,7 +57,7 @@ while True:
     print(dungeon.get_next_rooms_message())
 
     choose_room = input("Which room does your heart desire?:")
-    print(dungeon.has_previous_room)
+    print(dungeon.has_previous_room())
     while not (choose_room.isdigit() or choose_room == "back" and dungeon.has_previous_room):
         choose_room = input("Invalid.\nEnter a room to enter: ")
     if choose_room == "back":
@@ -65,4 +66,5 @@ while True:
         continue
     choose_room = int(choose_room)
     dungeon.enter_room(choose_room)
+    
 

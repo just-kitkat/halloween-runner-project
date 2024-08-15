@@ -17,14 +17,14 @@ class Monster:
     def monster_attack_player(self,player):
         bool = player.weapon.attack(player)
         if bool:
-            print(f"{self.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
+            print(f"{self.name}\'s attack hit, [{self.weapon.damage}] damage dealt")
         else:
             print(f"{self.name}\'s attack missed!")
 
     def player_attack_monster(self,player):
         bool = player.weapon.attack(self)
         if bool:
-            print(f"{player.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
+            print(f"{player.name}\'s attack hit, [{self.weapon.damage}] damage dealt")
         else:
             print(f"{player.name}\'s attack missed!")
 
