@@ -35,6 +35,13 @@ weapon_data = {
         "durability": None,
         "description": "[placeholder]"
     },
+    "wooden sword": {
+        "name": "Wooden Sword",
+        "damage": 3,
+        "accuracy": 90,
+        "durability": None,
+        "description": "[placeholder]"
+    },
     "cutlery dagger": {
         "name": "Cultery Dagger",
         "damage": 2,

@@ -13,10 +13,11 @@ def monster_name_generation():
     return monster_name
 
 class Monster:
-    def __init__(self,name,monster_data):
-        self.name = name
+    def __init__(self,monster_data):
+        self.name = monster_name_generation()
         self.weapon = create_weapon(random.choice(monster_data["weapon_label"]))
         self.health = monster_data["health"]
+        self.type = monster_data["type"]
 
     #damage is done inside weapon class
     def monster_attack_player(self,player):
@@ -41,15 +42,30 @@ class Monster:
 
 monster_data = {
     "skeleton":{
+        "type":"Skeleton",
         "health": 3,
-        "weapon_label":["fists","crude bow","cutlery dagger"]
+        "weapon_label":["fists","crude bow","crude bow","cutlery dagger"]
     },
     "zombie":{
+        "type":"Zombie",
         "health":5,
-        "weapon_label":["fists","cutlery dagger","wooden spear"]
+        "weapon_label":["fists","cutlery dagger","wooden spear","wooden sword"]
+    },
+    "vampire":{
+        "type":"Vampire",
+        "health":6,
+        "weapon label":["wooden sword","wooden sword","cutlery dagger"]
+    },
+    "ghost":{
+        "type":"Ghost",
+        "health":2,
+        "weapon label":["fists","fists","cutlery dagger"]
     }
 }
 
 def create_monster(label: str) -> Monster:
     data = monster_data[label]
-    return Monster(monster_name_generation(),data)
+    return Monster(data)
+
+def all_monsters():
+    return monster_data.keys()
