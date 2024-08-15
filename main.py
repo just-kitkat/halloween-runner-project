@@ -46,8 +46,8 @@ while True:
     # It runs automatically and the result of the fight will be displayed in the console immediately.
     monster = dungeon.get_monster()
     if monster is not None:
-        print(f"There is a {monster.mob} here...")
-        print("It's name is", monster.name)
+        print(f"There is a {monster.get_type()} here...")
+        print("It's name is", monster.get_name())
     win = player.fight_monster(monster)
     if win == False: # win may be True, False or None
         print("You died...")

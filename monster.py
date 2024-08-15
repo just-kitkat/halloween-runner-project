@@ -1,5 +1,5 @@
 import random
-from weapon import create_weapon
+from weapon import create_random_weapon
 
 def monster_name_generation():
     first_name = ['Grim', 'Mortis', 'Thorne', 'Vex', 'Hex', 'Nyx', 'Dread', 'Wraith', 'Shade', 'Gloom', 'Ethan', 'Seah', 'Joshua', 'Wong', 'Cho']
@@ -14,7 +14,7 @@ def monster_name_generation():
 class Monster:
     def __init__(self,data):
         self.name = monster_name_generation()
-        self.weapon = create_weapon(random.choice(data["weapon label"]))
+        self.weapon = create_random_weapon()
         self.health = data["health"]
         self.type = data["type"]
 
@@ -22,22 +22,29 @@ class Monster:
     def monster_attack_player(self,player):
         bool = self.weapon.attack(player)
         if bool:
-            print(f"{self.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
+            print(f"{self.name}\'s attack hit, {self.weapon.damage} damage dealt")
         else:
             print(f"{self.name}\'s attack missed!")
 
     def player_attack_monster(self,player):
         bool = player.weapon.attack(self)
         if bool:
-            print(f"{player.name}\'s attack hit,[ {self.weapon.damage}] damage dealt")
+            print(f"{player.name}\'s attack hit, {self.weapon.damage} damage dealt")
         else:
             print(f"{player.name}\'s attack missed!")
+
+    def reduce_health(self, hp):
+        self.health -= hp
 
     def get_name(self):
         return self.name
 
     def get_health(self):
         return self.health
+
+    def get_type(self):
+        return self.type
+
 
 monster_data = {
     "skeleton":{
@@ -64,13 +71,17 @@ monster_data = {
 
 def create_monster(label: str) -> Monster:
     data = monster_data[label]
-    print(data)
     return Monster(data)
+
+def create_random_monster() -> Monster:
+    monster = random.choice(all_monsters())
+    return create_monster(monster)
 
 def all_monsters():
     return list(monster_data.keys())
 
-#testing
-print(list(monster_data.keys()))
-entity = create_monster("ghost")
-print(entity.weapon.name)
+# Testing, do not delete.
+if __name__ == "__main__":
+    print(list(monster_data.keys()))
+    entity = create_monster("ghost")
+    print(entity.weapon.name)

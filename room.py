@@ -1,5 +1,5 @@
 import random
-from monster import create_monster,all_monsters
+from monster import create_random_monster
 from room_messages import msg
 
 class Room:
@@ -11,7 +11,7 @@ class Room:
         self.previous_room = previous_room
         self.cleared = False
         #updated line below
-        self.monster = None #create_monster(random.choice(all_monsters())) #Monster object
+        self.monster = create_random_monster()
         if previous_room is None:
             self.monster = None
 
