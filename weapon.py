@@ -70,4 +70,4 @@ def create_weapon(label: str) -> Weapon:
     return Weapon(data)
 
 def all_weapons():
-    return weapon_data.keys()
+    return list(weapon_data.keys())
