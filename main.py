@@ -33,20 +33,23 @@ start = intro.display_startingmsg()
 player = player.Player()# Create player object
 # Main game loop 
 dungeon = room.Dungeon() #initialize dungeon
-while start:
-# create monster, items in the room, create new doors that link to other rooms
-    monster = dungeon.get_monster() #call a monster
-    fight = player.fight_monster(monster) #player 
-    # if fight:
-    #     player.collect_items()
-    # else:
-    #     player.fail_message()
-    #     break
-    # player.break_action()
-    print(dungeon.clear_room())
-    num_of_rooms = dungeon.get_nums_next_rooms()
-    choose_room = int(input("Which room does your heart desire?:"))
-    while (choose_room < 1) or (choose_room > num_of_rooms):
-        choose_room = int(input("Wrong answer. \nWhich room does your heart desire?:"))
-    dungeon.enter_room(choose_room)
 
+if __name__ == "__main__":
+    while start:
+    # create monster, items in the room, create new doors that link to other rooms
+        monster = dungeon.get_monster() #call a monster
+        fight = player.fight_monster(monster) #player 
+        # if fight:
+        #     player.collect_items()
+        # else:
+        #     player.fail_message()
+        #     break
+        # player.break_action()
+        print(dungeon.clear_room())
+        num_of_rooms = dungeon.get_nums_next_rooms()
+        choose_room = int(input("Which room does your heart desire?:"))
+        while (choose_room < 1) or (choose_room > num_of_rooms):
+            choose_room = int(input("Wrong answer. \nWhich room does your heart desire?:"))
+        dungeon.enter_room(choose_room)
+    
+    
