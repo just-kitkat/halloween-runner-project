@@ -1,4 +1,5 @@
 from weapon import create_weapon
+from armour import create_armour
 
 class Player:
     def __init__(self, health=100):
@@ -7,6 +8,7 @@ class Player:
         #edited line below
         self.weapon = create_weapon("fists")
         self.name = "placeholder"
+        self.armor = create_armour("white tshirt")
 
     def get_health(self):
         return self.health
