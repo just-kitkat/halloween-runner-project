@@ -1,5 +1,5 @@
 import random
-from monster import Monster
+from monster import create_random_monster
 from room_messages import msg
 
 class Room:
@@ -10,7 +10,8 @@ class Room:
             self.type = random.choice(list(msg.keys()))
         self.previous_room = previous_room
         self.cleared = False
-        self.monster = Monster() # Monster object
+        #updated line below
+        self.monster = create_random_monster()
         if previous_room is None:
             self.monster = None
 
@@ -21,7 +22,7 @@ class Room:
         msg = f"There are {len(self.next_rooms)} rooms.\n"
         count = 1
         for room in self.next_rooms:
-            msg += f"{count}. {self.type}\n"
+            msg += f"{count}. {room.type}\n"
             count += 1
         return msg
 
@@ -59,11 +60,16 @@ class Dungeon:
         return self.get_next_rooms_message()
 
     def clear_room(self):
+        if self.current_room.cleared:
+            return self.get_next_rooms_message()
         self.current_room.cleared = True
         return self.__generate_next_rooms()
 
     def enter_room(self, idx): # idx should be 1-indexed
         self.current_room = self.current_room.next_rooms[idx - 1]
+
+    def has_previous_room(self) -> bool:
+        return self.current_room.previous_room is not None
 
     def enter_previous_room(self):
         if self.current_room.previous_room is None:
@@ -73,15 +79,22 @@ class Dungeon:
             self.current_room = self.current_room.previous_room
         return cleared
 
+    def get_room_type(self):
+        return self.current_room.type
+
 # The below code is used for testing, please do not remove
 if __name__ == "__main__":
     dungeon = Dungeon()
     dungeon.clear_room()
     # print(dungeon.enter_previous_room())
+    print(dungeon.get_room_intro_message())
     print(dungeon.get_next_rooms_message())
     dungeon.enter_room(1)
-    print(dungeon.display)
+    # print(dungeon.display)
     dungeon.clear_room()
+    print(dungeon.get_room_intro_message())
     print(dungeon.get_next_rooms_message())
     dungeon.enter_previous_room()
+    print(dungeon.get_room_type())
+    print(dungeon.get_room_intro_message())
     print(dungeon.get_next_rooms_message())
