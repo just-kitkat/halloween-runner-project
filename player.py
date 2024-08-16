@@ -11,6 +11,9 @@ class Player:
     def reduce_health(self, hp):
         self.health -= hp
 
+    def add_health(self, hp):
+        self.health += hp
+
     def fight_monster(self, monster):
         if monster is None:
             print("There are no monsters in this room!")
