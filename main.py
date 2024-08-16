@@ -30,7 +30,6 @@ e.g.
 # Introduction paragraph
 start = introduction.display_startingmsg()
 # Blackout, spawn in dungeon, game loop begins
-
 # Create player object
 player = player.Player(start)
 # introduction.display_startingmsg()
@@ -62,7 +61,7 @@ while True:
 
     choose_room = input("Which room does your heart desire?:")
 
-    while not (choose_room.isdigit() and 0 < int(choose_room) <= num_of_rooms or choose_room == "back" and dungeon.has_previous_room):
+    while not ((choose_room.isdigit()) and (0 < int(choose_room) <= num_of_rooms) or (choose_room == "back" and dungeon.has_previous_room)):
         choose_room = input("Invalid.\nEnter a room to enter: ")
     if choose_room == "back":
         dungeon.enter_previous_room()
@@ -70,4 +69,8 @@ while True:
         continue
     choose_room = int(choose_room)
     dungeon.enter_room(choose_room)
-    
+
+"""
+Notes:
+1. 
+"""
