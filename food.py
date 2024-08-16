@@ -1,5 +1,4 @@
 import random
-from player import add_health
 
 class Food:
   def __init__(self,data):
