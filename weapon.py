@@ -69,5 +69,9 @@ def create_weapon(label: str) -> Weapon:
     data = weapon_data[label]
     return Weapon(data)
 
+def create_random_weapon() -> Weapon:
+    weapon = random.choice(all_weapons())
+    return create_weapon(weapon)
+
 def all_weapons():
     return list(weapon_data.keys())
