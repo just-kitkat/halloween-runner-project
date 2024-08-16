@@ -38,7 +38,7 @@ dungeon = room.Dungeon()
 # Main game loop 
 while True:
     # Enter a room
-    print(f"You are in the {dungeon.get_room_type()}")
+    print(f"Welcome to the {dungeon.get_room_type()}")
     print(dungeon.get_room_intro_message())
 
     # Display monster and start fighting simulation
