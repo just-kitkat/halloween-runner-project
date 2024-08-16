@@ -1,5 +1,6 @@
 import random
 from typing import Type
+import math
 
 class Weapon:
     def __init__(self, data: dict):
@@ -11,15 +12,21 @@ class Weapon:
         self.description = data["description"]
         
     #generalised for both enemies and the player
-    def attack(self, entity_attacked):
+    def attack(self, entity_attacked,protection_val = 0):
         if random.randint(1,100)>self.accuracy:
             #attack missed
-            return False
+            return [False,0]
         else:
             #attack hit
-            #might want to have a block function for the player, give a % reduction in dmg with the cost of a turn, need to modify damage taken
-            entity_attacked.reduce_health(self.damage)
-            return True
+            if self.damage == 1:
+                entity_attacked.reduce_health(self.damage)
+                return [True,self.damage]
+            else:
+                print("protection",protection_val)
+                true_damage = math.floor(self.damage*(1-(protection_val/100)))
+                print("true: ",true_damage)
+                entity_attacked.reduce_health(true_damage)
+                return [True,true_damage]
 
 weapon_data = {
     "fists": {
