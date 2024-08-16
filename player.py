@@ -8,6 +8,9 @@ class Player:
         self.weapon = create_weapon("fists")
         self.name = "placeholder"
 
+    def get_health(self):
+        return self.health
+    
     def reduce_health(self, hp):
         self.health -= hp
 

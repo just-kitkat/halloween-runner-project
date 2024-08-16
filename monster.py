@@ -3,7 +3,7 @@ from weapon import create_random_weapon
 
 def monster_name_generation():
     first_name = ['Grim', 'Mortis', 'Thorne', 'Vex', 'Hex', 'Nyx', 'Dread', 'Wraith', 'Shade', 'Gloom', 'Ethan', 'Seah', 'Joshua', 'Wong', 'Cho']
-    last_name = ['Nightshade', 'Bloodbane', 'Frostmourne', 'Grimspike', 'Darkwhisper', 'Deathclaw', 'Skullrend', 'Shadowfang', 'Wraithborn', 'Ironshade', 'Wang', 'Eket', 'Zijia', 'Zin']
+    last_name = ['Nightshade', 'Bloodbane', 'Frostmourne', 'Grimspike', 'Darkwhisper', 'Deathclaw', 'Skullrend', 'Shadowfang', 'Wraithborn', 'Ironshade', 'Wang', 'Zijia', 'Zin']
     lenf = len(first_name)
     lenl = len(last_name)
     num1 = random.randint(0, lenf-1)
@@ -22,7 +22,8 @@ class Monster:
     def monster_attack_player(self, player):
         bool = self.weapon.attack(player)
         if bool:
-            print(f"{self.name}\'s attack hit, {self.weapon.damage} damage dealt")
+            print(f"{self.name}\'s attack hit, {player.weapon.damage} damage dealt")
+            print("Monster's health:", self.get_health())
         else:
             print(f"{self.name}\'s attack missed!")
 
@@ -30,6 +31,7 @@ class Monster:
         bool = player.weapon.attack(self)
         if bool:
             print(f"{player.name}\'s attack hit, {self.weapon.damage} damage dealt")
+            print("Player's health:", player.get_health())
         else:
             print(f"{player.name}\'s attack missed!")
 

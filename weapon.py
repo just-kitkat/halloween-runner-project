@@ -9,6 +9,7 @@ class Weapon:
         self.durability = data["durability"]
         self.name = data["name"]
         self.description = data["description"]
+        
     #generalised for both enemies and the player
     def attack(self, entity_attacked):
         if random.randint(1,100)>self.accuracy:
