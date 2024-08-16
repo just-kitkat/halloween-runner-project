@@ -24,28 +24,28 @@ weapon_data = {
     "fists": {
         "name": "My Fists",
         "damage": 1,
-        "accuracy": 75,
+        "accuracy": 90,
         "durability": None,
         "description": "[placeholder]"
     },
     "wooden spear": {
         "name": "Wooden Spear",
         "damage": 3,
-        "accuracy": 90,
+        "accuracy": 85,
         "durability": None,
         "description": "[placeholder]"
     },
     "wooden sword": {
         "name": "Wooden Sword",
         "damage": 3,
-        "accuracy": 90,
+        "accuracy": 85,
         "durability": None,
         "description": "[placeholder]"
     },
     "cutlery dagger": {
         "name": "Cultery Dagger",
         "damage": 2,
-        "accuracy": 80,
+        "accuracy": 85,
         "durability": None,
         "description": "[placeholder]"
     },
@@ -62,7 +62,63 @@ weapon_data = {
         "accuracy": 90,
         "durability": None,
         "description": "[placeholder]"
-    }
+    },
+    "ornate dagger":{
+        "name":"Ornate Dagger",
+        "damage":4,
+        "accuracy":85,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "magic staff":{
+        "name":"Magic Staff",
+        "damage":2,
+        "accuracy":95,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "claws":{
+        "name":"Claws",
+        "damage":3,
+        "accuracy":95,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "cane":{
+        "name":"Mother's Cane",
+        "damage":3,
+        "accuracy":100,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "slipper":{
+        "name":"Mother's Slipper",
+        "damage":2,
+        "accuracy":100,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "belt":{
+        "name":"Father's Belt",
+        "damage":7,
+        "accuracy":50,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "taxes":{
+        "name":"Father's Taxes",
+        "damage":6,
+        "accuracy":50,
+        "durability": None,
+        "description": "[placeholder]"
+    },
+    "horseman head":{
+        "name":"Horseman's Head",
+        "damage":4,
+        "accuracy":90,
+        "durability": None,
+        "description": "[placeholder]"
+    },
 }
 
 def create_weapon(label: str) -> Weapon:
