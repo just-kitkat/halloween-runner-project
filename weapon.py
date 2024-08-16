@@ -10,14 +10,14 @@ class Weapon:
         self.name = data["name"]
         self.description = data["description"]
     #generalised for both enemies and the player
-    def attack(self,entity):
+    def attack(self, entity_attacked):
         if random.randint(1,100)>self.accuracy:
             #attack missed
             return False
         else:
             #attack hit
             #might want to have a block function for the player, give a % reduction in dmg with the cost of a turn, need to modify damage taken
-            entity.reduce_health(self.damage)
+            entity_attacked.reduce_health(self.damage)
             return True
 
 weapon_data = {
