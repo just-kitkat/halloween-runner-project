@@ -61,7 +61,7 @@ while True:
 
     choose_room = input("Which room does your heart desire?:")
 
-    while not (choose_room.isdigit() or choose_room == "back" and dungeon.has_previous_room):
+    while not (choose_room.isdigit() and 0 < int(choose_room) <= num_of_rooms or choose_room == "back" and dungeon.has_previous_room):
         choose_room = input("Invalid.\nEnter a room to enter: ")
     if choose_room == "back":
         dungeon.enter_previous_room()
