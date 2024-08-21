@@ -2,12 +2,12 @@ from weapon import create_weapon
 from armour import create_armour
 
 class Player:
-    def __init__(self, health=100):
+    def __init__(self,name, health=100):
         self.health = health
         self.items = []
         #edited line below
         self.weapon = create_weapon("fists")
-        self.name = "placeholder"
+        self.name = name
         self.armor = create_armour("white tshirt")
 
     def get_health(self):
