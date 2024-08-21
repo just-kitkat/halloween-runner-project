@@ -54,7 +54,9 @@ class Game:
                 print("You won the fight!")
             dungeon.clear_room()
             num_of_rooms = dungeon.get_nums_next_rooms()
+            self.sleep()
             print(f"There are {num_of_rooms} rooms to enter. \nYou may also go back to the previous room by entering 'back'.")
+            self.sleep()
             print(dungeon.get_next_rooms_message())
         
             choose_room = input("Which room does your heart desire?:")
@@ -64,6 +66,7 @@ class Game:
             if choose_room == "back":
                 dungeon.enter_previous_room()
                 print("You have entered the previous room...")
+                self.sleep()
                 continue
             choose_room = int(choose_room)
             dungeon.enter_room(choose_room)
@@ -76,4 +79,4 @@ class Game:
 
 game = Game()
 name = game.intro()
-game.game_loop(name)
+game.game_loop("YT")
