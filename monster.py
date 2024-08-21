@@ -103,6 +103,12 @@ monster_data = {
     }
 }
 
+boss_data = {
+    "type": "mega big scary monster",
+    "health": 5,
+    "weapon label": ["mega sword"]
+}
+
 def create_monster(label: str) -> Monster:
     data = monster_data[label]
     return Monster(data)
@@ -110,6 +116,9 @@ def create_monster(label: str) -> Monster:
 def create_random_monster() -> Monster:
     monster = random.choice(all_monsters())
     return create_monster(monster)
+
+def create_boss() -> Monster:
+    return Monster(boss_data)
 
 def all_monsters():
     return list(monster_data.keys())

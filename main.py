@@ -1,29 +1,8 @@
 import room 
 import introduction
 import player
-"""
-Player class:
-- name
-- health
-- inventory
-- hunger
+from boss import boss_fight
 
-Room class:
-linked list format, linking rooms together
-doors attribute will be a list of Room objects
-- linked rooms
-- monsters
-- items inside (weapons and foods)
-- special events
-parent class to room types
-e.g.
-- k    itchen
-- main hall
-- bathroom
-- cellar
-- dungeon
-- armoury
-"""
 # from shop import display_shop
 # When the game first starts...
 # Introduction paragraph
@@ -34,6 +13,7 @@ e.g.
 player = player.Player()
 # introduction.display_startingmsg()
 dungeon = room.Dungeon()
+rooms_cleared = 0
 
 # Main game loop 
 while True:
@@ -49,6 +29,7 @@ while True:
     if monster is not None:
         print(f"There is a {monster.get_type()} here...")
         print("It's name is", monster.get_name())
+        rooms_cleared += 1
     win = player.fight_monster(monster)
     if win == False: # win may be True, False or None
         print("You died...")
@@ -70,5 +51,9 @@ while True:
         continue
     choose_room = int(choose_room)
     dungeon.enter_room(choose_room)
+
+    if rooms_cleared >= 10:
+        boss_fight(player)
+        break
     
 

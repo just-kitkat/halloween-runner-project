@@ -125,6 +125,13 @@ weapon_data = {
         "durability": None,
         "description": "[placeholder]"
     },
+    "mega sword":{
+        "name":"Fiery Sword",
+        "damage":random.randint(10,15),
+        "accuracy":75,
+        "durability": None,
+        "description": "The boss's sword. Its big, its scary, and it hurts..."
+    }
 }
 
 def create_weapon(label: str) -> Weapon:
