@@ -2,18 +2,32 @@ import random
 from monster import create_random_monster
 from room_messages import msg
 
+counter = {}
+
 class Room:
     def __init__(self, previous_room, room_type=None):
         self.next_rooms = []
+
+        if room_type is None:
+            room_type = random.choice(list(msg.keys()))
         self.type = room_type
-        if self.type is None:
-            self.type = random.choice(list(msg.keys()))
+
+        if self.type in counter:
+            room_type += " " + str(counter[self.type]+1)
+            counter[self.type] += 1
+        else:
+            counter[self.type] = 1
+        self.display_type = room_type
+        
         self.previous_room = previous_room
         self.cleared = False
         #updated line below
         self.monster = create_random_monster()
         if previous_room is None:
             self.monster = None
+
+    def get_type_display(self):
+        return self.display_type
 
     def get_next_rooms(self):
         if len(self.next_rooms) == 0:
@@ -22,7 +36,7 @@ class Room:
         msg = f"There are {len(self.next_rooms)} rooms.\n"
         count = 1
         for room in self.next_rooms:
-            msg += f"{count}. {room.type}\n"
+            msg += f"{count}. {room.get_type_display()}\n"
             count += 1
         return msg
 
@@ -41,6 +55,9 @@ class Dungeon:
 
     def is_room_cleared(self):
         return self.current_room.cleared
+
+    def get_room_type_display(self):
+        return self.current_room.get_type_display()
 
     def get_nums_next_rooms(self):
         return self.current_room.get_num_next_rooms()
