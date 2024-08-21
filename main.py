@@ -40,6 +40,7 @@ while True:
     # Enter a room
     print(f"Welcome to the {dungeon.get_room_type()}")
     print(dungeon.get_room_intro_message())
+    input('Press Enter to continue :')
 
     # Display monster and start fighting simulation
     # This does not require any player interaction for now.
