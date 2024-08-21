@@ -32,98 +32,98 @@ weapon_data = {
         "damage": 1,
         "accuracy": 90,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Very low damage"
     },
     "wooden spear": {
         "name": "Wooden Spear",
         "damage": 3,
         "accuracy": 85,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Low damage"
     },
     "wooden sword": {
         "name": "Wooden Sword",
         "damage": 3,
         "accuracy": 85,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Low damage"
     },
     "cutlery dagger": {
         "name": "Cultery Dagger",
         "damage": 2,
         "accuracy": 85,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Very low damage"
     },
     "crude bow": {
         "name": "Crude Bow",
         "damage": 2,
         "accuracy": 80,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Very low damage"
     },
     "silver sword": {
         "name": "Silver Sword",
         "damage": 5,
         "accuracy": 90,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "High damage"
     },
     "ornate dagger":{
         "name":"Ornate Dagger",
         "damage":4,
         "accuracy":85,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "High damage"
     },
     "magic staff":{
         "name":"Magic Staff",
         "damage":2,
         "accuracy":95,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Very low damage"
     },
     "claws":{
         "name":"Claws",
         "damage":3,
         "accuracy":95,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Low damage"
     },
     "cane":{
         "name":"Mother's Cane",
         "damage":3,
         "accuracy":100,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Low damage"
     },
     "slipper":{
         "name":"Mother's Slipper",
         "damage":2,
         "accuracy":100,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "Very low damage"
     },
     "belt":{
         "name":"Father's Belt",
         "damage":7,
         "accuracy":50,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "HIGH damage"
     },
     "taxes":{
         "name":"Father's Taxes",
         "damage":6,
         "accuracy":50,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "HIGH damage"
     },
     "horseman head":{
         "name":"Horseman's Head",
         "damage":4,
         "accuracy":90,
         "durability": None,
-        "description": "[placeholder]"
+        "description": "High damage"
     },
     "mega sword":{
         "name":"Fiery Sword",

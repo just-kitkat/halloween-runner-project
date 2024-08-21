@@ -19,6 +19,7 @@ def display_startingmsg():
         print(f'Welcome {name}! Enjoy the game!')
         time.sleep(4)
         game_start(name)
+        return name
     elif char == 'E':
         print("Thanks for playing!")
         exit(0)
