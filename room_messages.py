@@ -31,5 +31,19 @@ msg = {
                ],
     "armoury": ["What a multitude of outfits for the royal servants!",
                "Makes you feel like a knight when you wear them, right?",
-               "Maybe they'll be of use as you fight the numerous monsters that will appear in this room. You never know."]    
+               "Maybe they'll be of use as you fight the numerous monsters that will appear in this room. You never know."],
+    "chapel": ["Welcome to the chapel, where everything is holy, holy, holy.", 
+              "This is a very sacred place, for many human beings have been sanctified here.",
+              "However, at night, it's also one of the most eerie places.",
+              "Summon your inner bravery as you handle the many possibilities that may come about in this place.",
+              "May the power of the gods be in you, or so they say."],
+    "feast hall": ["Oh, how grand this place is! The most kingly and grand hall where the most high beings have their meals.",
+                  "Welcome to the feast hall. Something's brewing somewhere.",
+                  "However, what is also brewing is danger.",
+                  "Come on! No time for dilly-dallying! The only way you can stay safe is if you start now!"],
+    "boss room": ["At last! The final showdown has come.",
+                 "All your effort in this mansion has cumulated until this point.",
+                 "What you do now may make or break your entire mission. It's crucial to consider your actions.",
+                 "Best of luck to you, you're going to need it."]
+    
 }
