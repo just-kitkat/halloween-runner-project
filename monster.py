@@ -23,7 +23,7 @@ class Monster:
         lst = self.weapon.attack(player,player.armor.protection)
         bool = lst[0]
         if bool:
-            print(f"{self.name}\'s attack hit, {lst[1]} damage dealt")
+            print(f"{self.name}\'s attack hit, {lst[1]} damage dealt ({lst[2]} dmg. blk.)")
             print("Monster's health:", self.get_health())
         else:
             print(f"{self.name}\'s attack missed!")
@@ -32,7 +32,7 @@ class Monster:
         lst = player.weapon.attack(self)
         bool = lst[0]
         if bool:
-            print(f"{player.name}\'s attack hit, {lst[1]} damage dealt")
+            print(f"{player.name}\'s attack hit, {lst[1]} damage dealt ({lst[2]} dmg. blk.)")
             print("Player's health:", player.get_health())
         else:
             print(f"{player.name}\'s attack missed!")

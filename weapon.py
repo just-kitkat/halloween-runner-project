@@ -20,13 +20,11 @@ class Weapon:
             #attack hit
             if self.damage == 1:
                 entity_attacked.reduce_health(self.damage)
-                return [True,self.damage]
+                return [True,self.damage,0]
             else:
-                print("protection",protection_val)
                 true_damage = math.floor(self.damage*(1-(protection_val/100)))
-                print("true: ",true_damage)
                 entity_attacked.reduce_health(true_damage)
-                return [True,true_damage]
+                return [True,true_damage,self.damage-true_damage]
 
 weapon_data = {
     "fists": {
