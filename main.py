@@ -2,6 +2,7 @@ import room
 import introduction
 import player
 from boss import boss_fight
+from food import use
 
 # from shop import display_shop
 # When the game first starts...
@@ -36,6 +37,7 @@ while True:
         break
     if win is not None:
         print("You won the fight!")
+        use(player)
     dungeon.clear_room()
     num_of_rooms = dungeon.get_nums_next_rooms()
     print(f"There are {num_of_rooms} rooms to enter. \nYou may also go back to the previous room by entering 'back'.")
