@@ -36,6 +36,7 @@ while True:
         break
     if win is not None:
         print("You won the fight!")
+        player.display_weapon_armor_options()
     dungeon.clear_room()
     num_of_rooms = dungeon.get_nums_next_rooms()
     print(f"There are {num_of_rooms} rooms to enter. \nYou may also go back to the previous room by entering 'back'.")
