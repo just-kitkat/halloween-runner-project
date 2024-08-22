@@ -19,7 +19,7 @@ class Game:
         return start
 
     def sleep(self):
-        return time.sleep(1)
+        return time.sleep(1.5)
 
     def game_loop(self,name):
         # Create player and room object
