@@ -13,25 +13,25 @@ armour_data = {
     "name":"Leather Tunic",
     "protection":10,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"A very very old piece of leather. Seems to belong to some sort of servant..."
   },
   "chainmail":{
     "name":"Chainmail Tunic",
     "protection":20,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"Used to be bling bling shiny. Lightweight but useful."
   },
   "iron":{
     "name":"Iron Breastplate",
     "protection":30,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"A piece of metal. Heavy but very sturdy."
   },
   "white tshirt":{
     "name":"White T-shirt",
     "protection":0,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"You wore this just now, don't you?"
   },
 }
 
