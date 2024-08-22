@@ -5,11 +5,6 @@ import time
 from boss import boss_fight
 from food import heal
 
-# from shop import display_shop
-# When the game first starts...
-# Introduction paragraph
-# intro.start_the_game()
-# Blackout, spawn in dungeon, game loop begins
 class Game:
     def __init__(self):
         self.rooms_cleared = 0
