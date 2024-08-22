@@ -1,4 +1,5 @@
 import random
+import time
 
 """class Food:
     def __init__(self,data):
@@ -12,7 +13,7 @@ import random
 food_data = {
     "apple":{
         "name":"Apple",
-        "health":3
+        "health":1
     },
     "orange":{
         "name":"Orange",
@@ -28,15 +29,16 @@ food_data = {
     },
     "mala":{
         "name":"Mala",
-        "health":6
+        "health":4
     },
 }
 
 def all_food():
     return list(food_data.keys())
 
-def use(player):
+def heal(player):
     food = food_data[random.choice(all_food())]
     print(f"You found a {food["name"]} and ate it, gaining {food["health"]} health!")
     player.add_health(food["health"])
     print(f"Your health: {player.get_health()}")
+    time.sleep(6)

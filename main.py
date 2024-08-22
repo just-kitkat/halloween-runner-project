@@ -3,7 +3,7 @@ import introduction
 import player as p
 import time
 from boss import boss_fight
-from food import use
+from food import heal
 
 # from shop import display_shop
 # When the game first starts...
@@ -12,10 +12,10 @@ from food import use
 # Blackout, spawn in dungeon, game loop begins
 class Game:
     def __init__(self):
-        self.rooms_cleared = 0
+        self.rooms_cleared = 9
 
     def intro(self):
-        start = introduction.display_startingmsg()
+        start = "lol" #introduction.display_startingmsg()
         return start
 
     def sleep(self):
@@ -25,14 +25,24 @@ class Game:
         # Create player and room object
         player = p.Player(name)
         dungeon = room.Dungeon()
+
+        # Continuation of storyline from blackout
+        print("You wake up and find youself in a mysterious place...\n")
+        time.sleep(5)
+        print("You decide to explore the mansion and find out more about this infamous place...\n")
+        time.sleep(5)
+        print("You ready yourself against the dangers ahead, and start analysing your surroundings...\n")
+        time.sleep(5)
+        
         # Main game loop 
         while True:
             # Enter a room
-            print(f"Welcome to the {dungeon.get_room_type()}")
+            print(f"==== THE {dungeon.get_room_type().upper()} ====")
             self.sleep()
             print(dungeon.get_room_intro_message())
             self.sleep()
-            input('Press Enter to continue :')
+            input('Press enter to continue: ')
+            print()
             
             # Display monster and start fighting simulation
             # This does not require any player interaction for now.
@@ -51,8 +61,11 @@ class Game:
                 break
             if win is not None:
                 self.sleep()
-                print("You won the fight!")
+                print("You won the fight!\n")
+                heal(player)
+                print()
                 player.display_weapon_armor_options()
+                print()
             dungeon.clear_room()
             num_of_rooms = dungeon.get_nums_next_rooms()
             self.sleep()
@@ -60,7 +73,7 @@ class Game:
             self.sleep()
             print(dungeon.get_next_rooms_message())
         
-            choose_room = input("Which room does your heart desire?:")
+            choose_room = input("Which room does your heart desire: ")
         
             while not (choose_room.isdigit() and 0 < int(choose_room) <= num_of_rooms or choose_room == "back" and dungeon.has_previous_room):
                 choose_room = input("Invalid.\nEnter a room to enter: ")

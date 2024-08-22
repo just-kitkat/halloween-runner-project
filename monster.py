@@ -1,5 +1,5 @@
 import random
-from weapon import create_random_weapon
+from weapon import create_weapon
 
 def monster_name_generation():
     first_name = ['Grim', 'Mortis', 'Thorne', 'Vex', 'Hex', 'Nyx', 'Dread', 'Wraith', 'Shade', 'Gloom', 'Ethan', 'Seah', 'Joshua', 'Wong', 'Cho']
@@ -12,9 +12,11 @@ def monster_name_generation():
     return monster_name
 
 class Monster:
-    def __init__(self,data):
+    def __init__(self,data, boss=False):
         self.name = monster_name_generation()
-        self.weapon = create_random_weapon()
+        if boss:
+            self.name = "The Ghost King"
+        self.weapon = create_weapon(random.choice(data["weapon label"]))
         self.health = data["health"]
         self.type = data["type"]
 
@@ -23,19 +25,21 @@ class Monster:
         lst = self.weapon.attack(player,player.armor.protection)
         bool = lst[0]
         if bool:
-            print(f"{self.name}\'s attack hit, {lst[1]} damage dealt ({lst[2]} dmg. blk.)")
-            print("Monster's health:", self.get_health())
+            print(f"{self.name}\'s attacked you with \"{self.weapon.name}\", dealing {lst[1]} damage")
+            if lst[2] != 0:
+                print(f"Your armour protected you from {lst[2]} damage!")
         else:
             print(f"{self.name}\'s attack missed!")
+        print("Your health:", max(0, player.get_health()))
 
     def player_attack_monster(self, player):
         lst = player.weapon.attack(self)
         bool = lst[0]
         if bool:
-            print(f"{player.name}\'s attack hit, {lst[1]} damage dealt ({lst[2]} dmg. blk.)")
-            print("Player's health:", player.get_health())
+            print(f"You attacked {self.name} with \"{player.weapon.name}\", dealing {lst[1]} damage.")
         else:
-            print(f"{player.name}\'s attack missed!")
+            print("Your attack missed!")
+        print(f"{self.name}'s health:", max(0, self.get_health()))
 
     def reduce_health(self, hp):
         self.health -= hp
@@ -54,12 +58,12 @@ monster_data = {
     "skeleton":{
         "type":"Skeleton",
         "health": 3,
-        "weapon_label":["fists","crude bow","crude bow","cutlery dagger"]
+        "weapon label":["fists","crude bow","crude bow","cutlery dagger"]
     },
     "zombie":{
         "type":"Zombie",
         "health":3,
-        "weapon_label":["fists","cutlery dagger","wooden spear","wooden sword"]
+        "weapon label":["fists","cutlery dagger","wooden spear","wooden sword"]
     },
     "vampire":{
         "type":"Vampire",
@@ -104,8 +108,8 @@ monster_data = {
 }
 
 boss_data = {
-    "type": "mega big scary monster",
-    "health": 5,
+    "type": "Boss",
+    "health": random.randint(30, 60),
     "weapon label": ["mega sword"]
 }
 
@@ -118,7 +122,7 @@ def create_random_monster() -> Monster:
     return create_monster(monster)
 
 def create_boss() -> Monster:
-    return Monster(boss_data)
+    return Monster(boss_data, boss=True)
 
 def all_monsters():
     return list(monster_data.keys())

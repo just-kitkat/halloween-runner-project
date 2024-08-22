@@ -4,7 +4,7 @@ def error_msg():
     print('I\'m not sure I understand.')
 
 def display_startingmsg():
-    print("Welcome to Eek MUD! Are you ready for an adventure? Let's go!")
+    print("Welcome to Halloween Runner! Are you ready for an adventure? Let's go!")
     time.sleep(2)
     ye = True
     while ye:
@@ -16,7 +16,7 @@ def display_startingmsg():
             ye = False
     if char == 'C':
         name = player_name()
-        print(f'Welcome {name}! Enjoy the game!')
+        print(f'Welcome {name}! Enjoy the game!\n')
         time.sleep(4)
         game_start(name)
         return name
@@ -42,20 +42,18 @@ def game_start(name):
 
 def display_intromsg(name):
     print("Tonight is October 31st, the night known as \nHalloween.")
-    time.sleep(1)
-    print("After escaping your friend's raucous Halloween party, you find yourself aimlessly wandering deeper into the shadowy woods. The darkness thickens, enveloping you in an eerie silence.")
-    print("...")
-    time.sleep(2)
-    print("Hours pass in your solitary journey until you stumble upon a colossal, foreboding castle. It looks disturbingly familiar, and with a chill, you realize \n ... \nit is the infamous Nanyang Mansion. Whispers of children vanishing within its walls have haunted you, stories you always dismissed and never believed in.")
-    time.sleep(1)  
-    print("Tonight, you will uncover the truth. Tonight, \nyou will prove them wrong.")
-    print('')
-    time.sleep(2)
-    print('Are you up for the challenge?' +
-                    '\n1)yes \n2)yes \n3)yes')
-    input(f'{name}\'s input: ')
     time.sleep(3)
-    print('You walk up the long flight of stairs that lead up to a pair of large, mahogany doors. \nYou push the doors open slowly, and a large creak echoes through the expansive space. A dark, forbidding hall greets you. \nIt’s musty, and cobwebs lie all around. \nSmoke slowly penetrates through the floor and dust fills the atmosphere of the quiet, sordid expanse. At the corner of your eye, you see a red object lurking in the dark, at the same time, you feel something swift past behind you.')
+    print("After escaping your friend's raucous Halloween party, you find yourself aimlessly wandering deeper into the shadowy woods. The darkness thickens, enveloping you in an eerie silence.")
+    print("...\n")
+    time.sleep(5)
+    print("Hours pass in your solitary journey until you stumble upon a colossal, foreboding castle. It looks disturbingly familiar, and with a chill, you realise... \nIt's the infamous Nanyang Mansion. Whispers of children vanishing within its walls have haunted you, stories you always dismissed and never believed in.\n...\n")
+    time.sleep(8)  
+    print("Tonight, you will uncover the truth. \nTonight, you will prove them wrong.")
+    time.sleep(5)
+    print('Are you up for the challenge? \n1) yes\n2) yes\n3) yes')
+    input(f'{name}\'s input: ')
+    
+    print('\n\nYou walk up the long flight of stairs that lead up to a pair of large, mahogany doors. \nYou push the doors open slowly, and a large creak echoes through the expansive space. A dark, forbidding hall greets you. \nIt’s musty, and cobwebs lie all around. \nSmoke slowly penetrates through the floor and dust fills the atmosphere of the quiet, sordid expanse. At the corner of your eye, you see a red object lurking in the dark, at the same time, you feel something swift past behind you.\n')
 
 def the_three_actions(name):
     for i in range(3):
@@ -67,13 +65,15 @@ def the_three_actions(name):
                 error_msg()
             else:
                 ye = False
+        print()
         if option1 in ['1', '1)']:
             action_1()
         elif option1 in ['2', '2)']:
             action_2()
         elif option1 in['3', '3)']:
             action_3()
-        time.sleep(2)
+        print()
+            
     time.sleep(3)
     blackout_msg()
 
@@ -89,3 +89,4 @@ def action_2():
 
 def blackout_msg():
     print('As you turn around, something hard strikes the back of your head. Pain explodes through your skull, and your vision blurs. The last thing you see before everything goes black is the cold, dark corridor closing in around you. \n...\n')
+    time.sleep(6)

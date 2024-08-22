@@ -11,27 +11,33 @@ class Armour:
 armour_data = {
   "leather":{
     "name":"Leather Tunic",
-    "protection":10,
+    "protection":20,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"This small tunic will protect you against the evil forces."
   },
   "chainmail":{
     "name":"Chainmail Tunic",
-    "protection":20,
+    "protection":30,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"A strong piece of armour, no doubt."
   },
   "iron":{
     "name":"Iron Breastplate",
-    "protection":30,
+    "protection":50,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"This massive piece of armour will protect you from the worst of hits..."
+  },
+  "":{
+    "name":"Iron helmet",
+    "protection":10,
+    "durability":None,
+    "description":"This head gear will serve you well"
   },
   "white tshirt":{
     "name":"White T-shirt",
     "protection":0,
     "durability":None,
-    "description":"[placeholder]"
+    "description":"This fancy piece of fabric provides warmth from the cold, but no combat protection at all..."
   },
 }
 

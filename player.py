@@ -31,7 +31,8 @@ class Player:
             else:
                 monster.monster_attack_player(self)
             turn = "defend" if turn == "attack" else "attack"
-            time.sleep(3)
+            input("Press enter to continue: ")
+            print()
         return self.health > 0
 
     def display_weapon_armor_options(self):
@@ -53,11 +54,11 @@ Choice: """)
             print("You have picked up the weapon")
             self.weapon = weapon
         else:
-            print("You have ditched the item.")
+            print("You have ditched the weapon.")
 
 
         armor = create_random_armour()
-        print("You found a piece of armor in the room!")
+        print("\nYou found a piece of armour in the room!")
         time.sleep(1)
         print(f"""
 Armor: {armor.name}
@@ -65,14 +66,14 @@ Protection: {armor.protection}
 
 {armor.description}
 """)
-        choice = input("""Do you want to pick up this weapon?
-Enter 'pick' to pick up the weapon.
-Enter any other string to leave the weapon.
+        choice = input("""Do you want to pick up this armour?
+Enter 'pick' to pick up the armour.
+Enter any other string to leave the armour.
 Choice: """)
         if choice == "pick":
-            print("You have picked up the weapon")
+            print("You have picked up the armour")
             self.armor = armor
         else:
-            print("You have ditched the item.")
+            print("You have ditched the armour.")
 
             

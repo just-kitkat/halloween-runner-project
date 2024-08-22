@@ -4,6 +4,7 @@ boss_entry = {
         "Shadows dance on the walls, and an ominous silence fills the air.",
         "The fate of your freedom rests on the edge of this battle.",
         "Your victory here will earn you freedom; your defeat will bind you to this place as a ghost for eternity.",
+        "The mansion's boss, the Ghost King, has a unfamthomable amount of health and the infamous Fiery Sword.",
         "Are you ready to face the ultimate terror?"
 ],
     
