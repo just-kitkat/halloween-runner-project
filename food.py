@@ -41,4 +41,4 @@ def heal(player):
     print(f"You found a {food["name"]} and ate it, gaining {food["health"]} health!")
     player.add_health(food["health"])
     print(f"Your health: {player.get_health()}")
-    time.sleep(6)
+    time.sleep(3)

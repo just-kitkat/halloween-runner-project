@@ -13,7 +13,8 @@ boss_entry = {
         "With a final, decisive blow, the dark force that plagued this mansion is vanquished. The oppressive shadows lift, and a warm light begins to fill the room.",
         "The door to freedom swings open, revealing the path to the outside world. You have conquered the darkness and earned your escape from this haunted realm.",
         "Congratulations, brave adventurer — you are free at last!",
-        "GAME OVER."
+        "GAME OVER.",
+        "THANK YOU FOR PLAYING HALLOWEEN RUNNER"
     ],
     
     "player_lose" : [
@@ -21,7 +22,8 @@ boss_entry = {
         "The final boss’s dark power overwhelms you, and with a crushing blow, your strength wanes. The room grows colder as shadows close in, and the door behind you seals shut with a final, echoing thud.",
         "You are now bound to this mansion, a spectral prisoner of its eternal darkness. Your journey ends here, not with freedom, but as a lost soul among the restless spirits.",
         "Welcome to your new, ghostly existence.",
-        "GAME OVER."
+        "GAME OVER.",
+        "THANK YOU FOR PLAYING HALLOWEEN RUNNER"
     ]
 }
 

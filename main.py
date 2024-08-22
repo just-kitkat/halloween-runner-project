@@ -12,14 +12,14 @@ from food import heal
 # Blackout, spawn in dungeon, game loop begins
 class Game:
     def __init__(self):
-        self.rooms_cleared = 9
+        self.rooms_cleared = 0
 
     def intro(self):
-        start = "lol" #introduction.display_startingmsg()
+        start = introduction.display_startingmsg()
         return start
 
     def sleep(self):
-        return time.sleep(1)
+        return time.sleep(1.5)
 
     def game_loop(self,name):
         # Create player and room object

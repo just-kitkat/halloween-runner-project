@@ -13,13 +13,14 @@ armour_data = {
     "name":"Leather Tunic",
     "protection":20,
     "durability":None,
-    "description":"This small tunic will protect you against the evil forces."
+    "description":"A very very old piece of leather. Seems to belong to some sort of servant..."
+
   },
   "chainmail":{
     "name":"Chainmail Tunic",
     "protection":30,
     "durability":None,
-    "description":"A strong piece of armour, no doubt."
+    "description":"Used to be bling bling shiny. Lightweight but useful."
   },
   "iron":{
     "name":"Iron Breastplate",
