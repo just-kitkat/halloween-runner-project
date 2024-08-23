@@ -5,6 +5,8 @@ import time
 from boss import boss_fight
 from food import heal
 
+TOTAL_ROOMS = 5
+
 class Game:
     def __init__(self):
         self.rooms_cleared = 0
@@ -80,7 +82,7 @@ class Game:
             choose_room = int(choose_room)
             dungeon.enter_room(choose_room)
         
-            if self.rooms_cleared >= 10:
+            if self.rooms_cleared >= TOTAL_ROOMS:
                 boss_fight(player)
                 break
             
