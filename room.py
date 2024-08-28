@@ -47,6 +47,9 @@ class Dungeon:
     def get_monster(self) -> monster.Monster:
         return self.current_room.monster
 
+    def get_next_rooms(self) -> list[Room]:
+        return self.current_room.next_rooms
+
     def is_room_cleared(self):
         return self.current_room.cleared
 

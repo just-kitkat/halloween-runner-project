@@ -177,30 +177,31 @@ def main():
 
         print()
         game.dungeon.clear_room()
-        num_of_rooms = game.dungeon.get_nums_next_rooms()
+        rooms = game.dungeon.get_next_rooms()
+        prompt = f"There are {len(rooms)} rooms to enter."
+        choices = {
+            str(i): room.get_type_display()
+            for i, room in enumerate(rooms, start=1)
+        }
+        if game.dungeon.has_previous_room:
+            choices['back'] = "Go back to the previous room"
         pause()
-        print(
-            f"There are {num_of_rooms} rooms to enter. \nYou may also go back to the previous room by entering 'back'."
+        # Get player choice
+        choice = text.prompt_player_choice(
+            prompt=prompt,
+            choices=choices,
+            question="Which room does your heart desire: ",
+            validate=True
         )
         pause()
-        print(game.dungeon.get_next_rooms_message())
-
-        # Get player choice
-        choose_room = input("Which room does your heart desire: ")
-
-        while not (
-                choose_room.isdigit() and 0 < int(choose_room) <= num_of_rooms
-                or choose_room == "back" and game.dungeon.has_previous_room):
-            choose_room = input("Invalid.\nEnter a room to enter: ")
 
         # Enter room
-        if choose_room == "back":
+        if choice == "back":
             game.dungeon.enter_previous_room()
             print("You have entered the previous room...")
             pause()
             continue
-        choose_room = int(choose_room)
-        game.dungeon.enter_room(choose_room)
+        game.dungeon.enter_room(int(choice))
 
         # Boss battle
         if game.rooms_cleared >= TOTAL_ROOMS:
