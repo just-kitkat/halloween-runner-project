@@ -172,8 +172,8 @@ def main():
             pause()
             print("You won the fight!\n")
             give_reward(game, "food")
-            give_reward(game, "weapon")
-            give_reward(game, "armour")
+            give_reward(game, "weapon", autopickup=False)
+            give_reward(game, "armour", autopickup=False)
 
         print()
         game.dungeon.clear_room()
