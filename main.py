@@ -123,13 +123,7 @@ def main():
             item = weapon.create_random_weapon()
             print("You found a weapon in the room!")
             time.sleep(1)
-            print(f"""
-Name: {item.name}
-Damage: {item.damage}
-Accuracy: {item.accuracy}
-
-{item.description}
-""")
+            print(item.info())
             choice = text.prompt_player_choice(
                 prompt="Do you want to pick up this weapon?",
                 choices={"pick": "Pick up the weapon"},
@@ -144,12 +138,7 @@ Accuracy: {item.accuracy}
             item = armour.create_random_armour()
             print("\nYou found a piece of armour in the room!")
             time.sleep(1)
-            print(f"""
-Name: {item.name}
-Protection: {item.protection}
-
-{item.description}
-""")
+            print(item.info())
             choice = text.prompt_player_choice(
                 prompt="Do you want to pick up this armour?",
                 choices={"pick": "Pick up the armour"},

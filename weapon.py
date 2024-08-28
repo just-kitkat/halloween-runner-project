@@ -13,6 +13,15 @@ class Weapon:
         self.name = data["name"]
         self.description = data["description"]
 
+    def info(self) -> str:
+        infostr = ""
+        infostr += f"Name: {self.name}"
+        infostr += f"Damage: {self.damage}"
+        infostr += f"Accuracy: {self.accuracy}"
+        infostr += "\n"
+        infostr += f"{self.description}"
+        return infostr
+
     #generalised for both enemies and the player
     def attack(self, entity_attacked, protection_val=0):
         if random.randint(1, 100) > self.accuracy:

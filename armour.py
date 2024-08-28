@@ -9,6 +9,14 @@ class Armour:
         self.durability = data["durability"]
         self.description = data["description"]
 
+    def info(self) -> str:
+        infostr = ""
+        infostr += f"Name: {self.name}"
+        infostr += f"Protection: {self.protection}"
+        infostr += "\n"
+        infostr += self.description
+        return infostr
+
 
 armour_data = {
     "leather": {
