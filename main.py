@@ -97,38 +97,30 @@ def show_item_result(
         print(f"Your health: {game.player.get_health()}")
         time.sleep(3)
 
-def give_reward(game: Game, reward: str):
+def give_reward(game: Game, reward: str, autopickup: bool = True):
     """Macro function to handle player reward after fight."""
     if reward == "food":
         item = food.random_food()
-        show_item_info(item)
-        game.take_item(item)
-        show_item_result(game, item)
-        print()
-    elif reward == "armour":
-        item = weapon.create_random_weapon()
-        show_item_info(item)
-        choice = text.prompt_player_choice(
-            prompt="Do you want to pick up this weapon?",
-            choices={"pick": "Pick up the weapon"},
-            validate=False
-        )
-        if choice == "pick":
-            game.take_item(item)
-        show_item_result(game, item, choice)
     elif reward == "weapon":
+        item = weapon.create_random_weapon()
+    elif reward == "armour":
         item = armour.create_random_armour()
-        show_item_info(item)
-        choice = text.prompt_player_choice(
-            prompt="Do you want to pick up this armour?",
-            choices={"pick": "Pick up the armour"},
-            validate=False
-        )
-        if choice == "pick":
-            game.take_item(item)
-        show_item_result(game, item, choice)
     else:
         raise ValueError(f"Invalid reward: {reward}")
+    show_item_info(item)
+    # Prompt player to pick up item (if required)
+    if not autopickup:
+        choice = text.prompt_player_choice(
+            prompt=f"Do you want to pick up this {reward}?",
+            choices={"pick": f"Pick up the {reward}"},
+            validate=False
+        )
+    else:
+        choice = None
+    # Handle player choice (if any), show result of item
+    if choice == "pick":
+        game.take_item(item)
+    show_item_result(game, item, choice)
 
 def pause() -> None:
     time.sleep(1.5)
