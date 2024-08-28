@@ -9,7 +9,7 @@ counter = {}
 class Room:
 
     def __init__(self, previous_room, room_type=None):
-        self.next_rooms = []
+        self.next_rooms: list["Room"] = []
 
         if room_type is None:
             room_type = random.choice(list(msg.keys()))
@@ -32,16 +32,9 @@ class Room:
     def get_type_display(self):
         return self.display_type
 
-    def get_next_rooms(self):
-        if len(self.next_rooms) == 0:
-            return "Clear the room first!"
-
-        msg = f"There are {len(self.next_rooms)} rooms.\n"
-        count = 1
-        for room in self.next_rooms:
-            msg += f"{count}. {room.get_type_display()}\n"
-            count += 1
-        return msg
+    def get_next_rooms(self) -> tuple["Room", ...]:
+        """Return a tuple to avoid the original list getting modified."""
+        return tuple(self.next_rooms)
 
     def get_num_next_rooms(self):
         return len(self.next_rooms)
@@ -73,8 +66,15 @@ class Dungeon:
         raise ValueError("self.current_room.type has an invalid valie of",
                          room_type)
 
-    def get_next_rooms_message(self):
-        return self.current_room.get_next_rooms()
+    def get_next_rooms_message(self) -> str:
+        next_rooms = self.current_room.get_next_rooms()
+        if not next_rooms:
+            return "Clear the room first!"
+
+        msg = f"There are {len(next_rooms)} rooms.\n"
+        for i, room in enumerate(next_rooms, start=1):
+            msg += f"{i}. {room.get_type_display()}\n"
+        return msg
 
     def __generate_next_rooms(self):
         num_new_rooms = random.randint(2, 6)
