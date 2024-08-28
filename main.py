@@ -46,6 +46,7 @@ class Game:
         outcome = self.player.fight_monster(monster)
         if monster:
             self.rooms_cleared += 1
+        self.dungeon.clear_room()
         return outcome
 
 
@@ -176,7 +177,6 @@ def main():
             give_reward(game, "armour", autopickup=False)
 
         print()
-        game.dungeon.clear_room()
         rooms = game.dungeon.get_next_rooms()
         prompt = f"There are {len(rooms)} rooms to enter."
         choices = {
