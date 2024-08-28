@@ -97,6 +97,39 @@ def show_item_result(
         print(f"Your health: {game.player.get_health()}")
         time.sleep(3)
 
+def give_reward(game: Game, reward: str):
+    """Macro function to handle player reward after fight."""
+    if reward == "food":
+        item = food.random_food()
+        show_item_info(item)
+        game.take_item(item)
+        show_item_result(game, item)
+        print()
+    elif reward == "armour":
+        item = weapon.create_random_weapon()
+        show_item_info(item)
+        choice = text.prompt_player_choice(
+            prompt="Do you want to pick up this weapon?",
+            choices={"pick": "Pick up the weapon"},
+            validate=False
+        )
+        if choice == "pick":
+            game.take_item(item)
+        show_item_result(game, item, choice)
+    elif reward == "weapon":
+        item = armour.create_random_armour()
+        show_item_info(item)
+        choice = text.prompt_player_choice(
+            prompt="Do you want to pick up this armour?",
+            choices={"pick": "Pick up the armour"},
+            validate=False
+        )
+        if choice == "pick":
+            game.take_item(item)
+        show_item_result(game, item, choice)
+    else:
+        raise ValueError(f"Invalid reward: {reward}")
+
 def pause() -> None:
     time.sleep(1.5)
 
@@ -146,34 +179,9 @@ def main():
         if outcome_won is not None:
             pause()
             print("You won the fight!\n")
-            item = food.random_food()
-            show_item_info(item)
-            game.take_item(item)
-            show_item_result(game, item)
-            print()
-            item = weapon.create_random_weapon()
-            show_item_info(item)
-            print(item.info())
-            choice = text.prompt_player_choice(
-                prompt="Do you want to pick up this weapon?",
-                choices={"pick": "Pick up the weapon"},
-                validate=False
-            )
-            if choice == "pick":
-                game.take_item(item)
-            show_item_result(game, item, choice)
-
-            item = armour.create_random_armour()
-            show_item_info(item)
-            print(item.info())
-            choice = text.prompt_player_choice(
-                prompt="Do you want to pick up this armour?",
-                choices={"pick": "Pick up the armour"},
-                validate=False
-            )
-            if choice == "pick":
-                game.take_item(item)
-            show_item_result(game, item, choice)
+            give_reward(game, "food")
+            give_reward(game, "weapon")
+            give_reward(game, "armour")
 
         print()
         game.dungeon.clear_room()
