@@ -38,6 +38,9 @@ class Food:
         self.name = name
         self.health = health
 
+    def info(self) -> str:
+        return ""
+
 def all_food():
     return list(food_data.keys())
 

@@ -65,6 +65,38 @@ def show_monster_info(name: str, type: str) -> None:
     print("It's name is", name)
     pause()
 
+def show_item_info(item: weapon.Weapon | armour.Armour | food.Food) -> None:
+    if isinstance(item, weapon.Weapon):
+        itemtype = "weapon"
+    elif isinstance(item, armour.Armour):
+        itemtype = "armour"
+    elif isinstance(item, food.Food):
+        itemtype = "food"
+    a_or_an_item = f"an {itemtype}" if itemtype[0] in "aeiou" else f"a {itemtype}"
+    print(f"You found {a_or_an_item} in the room!")
+    print(item.info())
+    time.sleep(1)
+
+def show_item_result(
+        game: Game,
+        item: weapon.Weapon | armour.Armour | food.Food,
+        choice: str | None = None
+):
+    if isinstance(item, weapon.Weapon):
+        if choice == 'pick':
+            print(f"You took the {item.name}")
+        else:
+            print(f"You ditched the {item.name}")
+    elif isinstance(item, armour.Armour):
+        if choice == 'pick':
+            print(f"You took the {item.name}")
+        else:
+            print(f"You ditched the {item.name}")
+    elif isinstance(item, food.Food):
+        print(f"You ate the {item.name}, gaining {item.health} health!")
+        print(f"Your health: {game.player.get_health()}")
+        time.sleep(3)
+
 def pause() -> None:
     time.sleep(1.5)
 
@@ -115,14 +147,12 @@ def main():
             pause()
             print("You won the fight!\n")
             item = food.random_food()
+            show_item_info(item)
             game.take_item(item)
-            print(f"You found a {item.name} and ate it, gaining {item.health} health!")
-            print(f"Your health: {game.player.get_health()}")
-            time.sleep(3)
+            show_item_result(game, item)
             print()
             item = weapon.create_random_weapon()
-            print("You found a weapon in the room!")
-            time.sleep(1)
+            show_item_info(item)
             print(item.info())
             choice = text.prompt_player_choice(
                 prompt="Do you want to pick up this weapon?",
@@ -131,13 +161,10 @@ def main():
             )
             if choice == "pick":
                 game.take_item(item)
-                print("You have picked up the weapon")
-            else:
-                print("You have ditched the weapon.")
+            show_item_result(game, item, choice)
 
             item = armour.create_random_armour()
-            print("\nYou found a piece of armour in the room!")
-            time.sleep(1)
+            show_item_info(item)
             print(item.info())
             choice = text.prompt_player_choice(
                 prompt="Do you want to pick up this armour?",
@@ -145,10 +172,8 @@ def main():
                 validate=False
             )
             if choice == "pick":
-                print("You have picked up the armour")
                 game.take_item(item)
-            else:
-                print("You have ditched the armour.")
+            show_item_result(game, item, choice)
 
         print()
         game.dungeon.clear_room()
