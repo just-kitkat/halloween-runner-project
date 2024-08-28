@@ -4,6 +4,7 @@ import player
 import time
 from boss import boss_fight
 from food import heal
+import monster
 
 TOTAL_ROOMS = 5
 
@@ -21,6 +22,19 @@ class Game:
     def get_current_room_message(self) -> str:
         return self.dungeon.get_room_intro_message()
 
+    def get_current_room_monster(self) -> monster.Monster:
+        return self.dungeon.get_monster()
+
+    def clear_room(self) -> bool | None:
+        """Have the player fight the monster in the current room, if there is one.
+        Return the outcome of battle.
+        """
+        monster = self.get_current_room_monster()
+        outcome = self.player.fight_monster(monster)
+        if monster:
+            self.rooms_cleared += 1
+        return outcome
+
 
 def show_room_info(name: str, message: str) -> None:
     """Display the room information."""
@@ -30,7 +44,14 @@ def show_room_info(name: str, message: str) -> None:
     pause()
     input('Press enter to continue: ')
     print()
-    
+
+def show_monster_info(name: str, type: str) -> None:
+    """Display the monster information."""
+    print(f"There is a {type} here...")
+    pause()
+    print("It's name is", name)
+    pause()
+
 def pause() -> None:
     time.sleep(1.5)
 
@@ -66,19 +87,18 @@ def main():
         # This does not require any player interaction for now.
         # It runs automatically and the result of the fight will be displayed
         # in the console immediately.
-        monster = game.dungeon.get_monster()
-        if monster is not None:
-            print(f"There is a {monster.get_type()} here...")
-            pause()
-            print("It's name is", monster.get_name())
-            pause()
-            game.rooms_cleared += 1
-        win = game.player.fight_monster(monster)
-        if not win:  # win may be True, False or None
+        monster = game.get_current_room_monster()
+        if monster:
+            show_monster_info(
+                name=monster.get_name(),
+                type=monster.get_type()
+            )
+        outcome_won = game.clear_room()
+        if not outcome_won:  # win may be True, False or None
             pause()
             print("You died...")
             break
-        if win is not None:
+        if outcome_won is not None:
             pause()
             print("You won the fight!\n")
             heal(game.player)

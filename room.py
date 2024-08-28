@@ -1,5 +1,6 @@
 import random
-from monster import create_random_monster
+
+import monster
 from room_messages import msg
 
 counter = {}
@@ -24,7 +25,7 @@ class Room:
         self.previous_room = previous_room
         self.cleared = False
         #updated line below
-        self.monster = create_random_monster()
+        self.monster = monster.create_random_monster()
         if previous_room is None:
             self.monster = None
 
@@ -53,7 +54,7 @@ class Dungeon:
         self.current_room = Room(None)
         self.number_of_rooms_visited = 0
 
-    def get_monster(self):
+    def get_monster(self) -> monster.Monster:
         return self.current_room.monster
 
     def is_room_cleared(self):
