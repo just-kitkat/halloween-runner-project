@@ -5,6 +5,9 @@ import time
 from boss import boss_fight
 from food import heal
 import monster
+import armour
+import weapon
+import text
 
 TOTAL_ROOMS = 5
 
@@ -24,6 +27,14 @@ class Game:
 
     def get_current_room_monster(self) -> monster.Monster:
         return self.dungeon.get_monster()
+
+    def take_item(self, item: weapon.Weapon | armour.Armour) -> None:
+        if isinstance(item, weapon.Weapon):
+            self.player.weapon = item
+        elif isinstance(item, armour.Armour):
+            self.player.armor = item
+        else:
+            raise TypeError(f"{item}: Unrecgonized item type")
 
     def clear_room(self) -> bool | None:
         """Have the player fight the monster in the current room, if there is one.
@@ -103,8 +114,48 @@ def main():
             print("You won the fight!\n")
             heal(game.player)
             print()
-            game.player.display_weapon_armor_options()
-            print()
+            item = weapon.create_random_weapon()
+            print("You found a weapon in the room!")
+            time.sleep(1)
+            print(f"""
+Name: {item.name}
+Damage: {item.damage}
+Accuracy: {item.accuracy}
+
+{item.description}
+""")
+            choice = text.prompt_player_choice(
+                prompt="Do you want to pick up this weapon?",
+                choices={"pick": "Pick up the weapon"},
+                validate=False
+            )
+            if choice == "pick":
+                game.take_item(item)
+                print("You have picked up the weapon")
+            else:
+                print("You have ditched the weapon.")
+
+            item = armour.create_random_armour()
+            print("\nYou found a piece of armour in the room!")
+            time.sleep(1)
+            print(f"""
+Name: {item.name}
+Protection: {item.protection}
+
+{item.description}
+""")
+            choice = text.prompt_player_choice(
+                prompt="Do you want to pick up this armour?",
+                choices={"pick": "Pick up the armour"},
+                validate=False
+            )
+            if choice == "pick":
+                print("You have picked up the armour")
+                game.take_item(item)
+            else:
+                print("You have ditched the armour.")
+
+        print()
         game.dungeon.clear_room()
         num_of_rooms = game.dungeon.get_nums_next_rooms()
         pause()
