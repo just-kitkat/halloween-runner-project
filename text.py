@@ -6,6 +6,7 @@ Functions for handling text input and display.
 def prompt_player_choice(
     prompt: str,
     choices: dict[str, str],
+    question: str = "Your choice: ",
     validate: bool = True
 ):
     """Prompts the player to make a choice.
@@ -25,7 +26,7 @@ def prompt_player_choice(
         print(prompt)
         for option, description in choices.items():
             print(f"{option}: {description}")
-        choice = input("Your choice: ")
+        choice = input(question)
         if validate and choice not in choices:
             print("Invalid choice. Please try again.")
             choice = None
