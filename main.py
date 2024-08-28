@@ -15,9 +15,24 @@ class Game:
         self.dungeon = room.Dungeon()
         self.player = player.Player(name)
 
-    def sleep(self):
-        return time.sleep(1.5)
+    def get_current_room(self) -> str:
+        return self.dungeon.get_room_type().upper()
 
+    def get_current_room_message(self) -> str:
+        return self.dungeon.get_room_intro_message()
+
+
+def show_room_info(name: str, message: str) -> None:
+    """Display the room information."""
+    print(f"==== THE {name} ====")
+    pause()
+    print(message)
+    pause()
+    input('Press enter to continue: ')
+    print()
+    
+def pause() -> None:
+    time.sleep(1.5)
 
 def intro():
     start = introduction.display_startingmsg()
@@ -42,12 +57,10 @@ def main():
     # Main game loop
     while True:
         # Show room info
-        print(f"==== THE {game.dungeon.get_room_type().upper()} ====")
-        game.sleep()
-        print(game.dungeon.get_room_intro_message())
-        game.sleep()
-        input('Press enter to continue: ')
-        print()
+        show_room_info(
+            name=game.get_current_room(),
+            message=game.get_current_room_message()
+        )
 
         # Check for monster in room, if so, fight it
         # This does not require any player interaction for now.
@@ -56,17 +69,17 @@ def main():
         monster = game.dungeon.get_monster()
         if monster is not None:
             print(f"There is a {monster.get_type()} here...")
-            game.sleep()
+            pause()
             print("It's name is", monster.get_name())
-            game.sleep()
+            pause()
             game.rooms_cleared += 1
         win = game.player.fight_monster(monster)
         if not win:  # win may be True, False or None
-            game.sleep()
+            pause()
             print("You died...")
             break
         if win is not None:
-            game.sleep()
+            pause()
             print("You won the fight!\n")
             heal(game.player)
             print()
@@ -74,11 +87,11 @@ def main():
             print()
         game.dungeon.clear_room()
         num_of_rooms = game.dungeon.get_nums_next_rooms()
-        game.sleep()
+        pause()
         print(
             f"There are {num_of_rooms} rooms to enter. \nYou may also go back to the previous room by entering 'back'."
         )
-        game.sleep()
+        pause()
         print(game.dungeon.get_next_rooms_message())
 
         # Get player choice
@@ -93,7 +106,7 @@ def main():
         if choose_room == "back":
             game.dungeon.enter_previous_room()
             print("You have entered the previous room...")
-            game.sleep()
+            pause()
             continue
         choose_room = int(choose_room)
         game.dungeon.enter_room(choose_room)
