@@ -2,8 +2,10 @@ import time
 from weapon import create_weapon, create_random_weapon
 from armour import create_armour, create_random_armour
 
+
 class Player:
-    def __init__(self,name, health=100):
+
+    def __init__(self, name, health=100):
         self.health = health
         self.items = []
         #edited line below
@@ -13,7 +15,7 @@ class Player:
 
     def get_health(self):
         return self.health
-    
+
     def reduce_health(self, hp):
         self.health -= hp
 
@@ -56,7 +58,6 @@ Choice: """)
         else:
             print("You have ditched the weapon.")
 
-
         armor = create_random_armour()
         print("\nYou found a piece of armour in the room!")
         time.sleep(1)
@@ -75,5 +76,3 @@ Choice: """)
             self.armor = armor
         else:
             print("You have ditched the armour.")
-
-            
