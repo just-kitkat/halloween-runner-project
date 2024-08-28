@@ -3,7 +3,7 @@ import introduction
 import player
 import time
 from boss import boss_fight
-from food import heal
+import food
 import monster
 import armour
 import weapon
@@ -28,11 +28,13 @@ class Game:
     def get_current_room_monster(self) -> monster.Monster:
         return self.dungeon.get_monster()
 
-    def take_item(self, item: weapon.Weapon | armour.Armour) -> None:
+    def take_item(self, item: weapon.Weapon | armour.Armour | food.Food) -> None:
         if isinstance(item, weapon.Weapon):
             self.player.weapon = item
         elif isinstance(item, armour.Armour):
             self.player.armor = item
+        elif isinstance(item, food.Food):
+            self.player.add_health(item.health)
         else:
             raise TypeError(f"{item}: Unrecgonized item type")
 
@@ -112,7 +114,11 @@ def main():
         if outcome_won is not None:
             pause()
             print("You won the fight!\n")
-            heal(game.player)
+            item = food.random_food()
+            game.take_item(item)
+            print(f"You found a {item.name} and ate it, gaining {item.health} health!")
+            print(f"Your health: {game.player.get_health()}")
+            time.sleep(3)
             print()
             item = weapon.create_random_weapon()
             print("You found a weapon in the room!")
