@@ -1,22 +1,23 @@
 import random
+
+import data
 from weapon import create_weapon
+
+monster_data = data.load("monster.json")
+boss_data = monster_data.pop("boss")
+min_, max_ = boss_data["health"]
+boss_data["health"] = random.randint(min_, max_)
+names = data.load("names.json")
+first_names = names["first_names"]
+last_names = names["last_names"]
 
 
 def monster_name_generation():
-    first_name = [
-        'Grim', 'Mortis', 'Thorne', 'Vex', 'Hex', 'Nyx', 'Dread', 'Wraith',
-        'Shade', 'Gloom', 'Ethan', 'Seah', 'Joshua', 'Wong', 'Cho'
-    ]
-    last_name = [
-        'Nightshade', 'Bloodbane', 'Frostmourne', 'Grimspike', 'Darkwhisper',
-        'Deathclaw', 'Skullrend', 'Shadowfang', 'Wraithborn', 'Ironshade',
-        'Wang', 'Zijia', 'Zin'
-    ]
-    lenf = len(first_name)
-    lenl = len(last_name)
+    lenf = len(first_names)
+    lenl = len(last_names)
     num1 = random.randint(0, lenf - 1)
     num2 = random.randint(0, lenl - 1)
-    monster_name = f'{first_name[num1]} {last_name[num2]}'
+    monster_name = f'{first_names[num1]} {last_names[num2]}'
     return monster_name
 
 
@@ -66,73 +67,6 @@ class Monster:
 
     def get_type(self):
         return self.type
-
-
-monster_data = {
-    "skeleton": {
-        "type": "Skeleton",
-        "health": 3,
-        "weapon label": ["fists", "crude bow", "crude bow", "cutlery dagger"]
-    },
-    "zombie": {
-        "type": "Zombie",
-        "health": 3,
-        "weapon label":
-        ["fists", "cutlery dagger", "wooden spear", "wooden sword"]
-    },
-    "vampire": {
-        "type":
-        "Vampire",
-        "health":
-        7,
-        "weapon label":
-        ["wooden sword", "wooden sword", "cutlery dagger", "ornate dagger"]
-    },
-    "ghost": {
-        "type": "Ghost",
-        "health": 2,
-        "weapon label": ["fists", "fists", "cutlery dagger"]
-    },
-    "witch": {
-        "type": "Witch",
-        "health": 3,
-        "weapon label": ["magic staff"]
-    },
-    "werewolf": {
-        "type": "Werewolf",
-        "health": 6,
-        "weapon label": ["claws"]
-    },
-    "mother": {
-        "type": "Mother",
-        "health": 4,
-        "weapon label": ["cane", "slipper"]
-    },
-    "father": {
-        "type": "Father",
-        "health": 5,
-        "weapon label": ["belt", "taxes"]
-    },
-    "headless horseman": {
-        "type":
-        "Headless Horseman",
-        "health":
-        7,
-        "weapon label":
-        ["horseman head", "horseman head", "horseman head", "ornate dagger"]
-    },
-    "frankenstein monster": {
-        "type": "Frankenstein's Monster",
-        "health": 14,
-        "weapon label": ["fists"]
-    }
-}
-
-boss_data = {
-    "type": "Boss",
-    "health": random.randint(30, 60),
-    "weapon label": ["mega sword"]
-}
 
 
 def create_monster(label: str) -> Monster:

@@ -1,7 +1,9 @@
 import random
 
+import data
 import monster
-from room_messages import msg
+
+msg = data.load("room.json")
 
 counter = {}
 

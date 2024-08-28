@@ -1,6 +1,8 @@
 import random
 import time
 
+import data
+
 """class Food:
     def __init__(self,data):
         self.name = data["name"]
@@ -10,28 +12,7 @@ import time
         #per turn the player takes how much he heals, its healing over time, decreases by 1 per turn until 0
         player.add_health(self.healing)"""
 
-food_data = {
-    "apple": {
-        "name": "Apple",
-        "health": 1
-    },
-    "orange": {
-        "name": "Orange",
-        "health": 3
-    },
-    "durian": {
-        "name": "Mao Shan Wang Durian",
-        "health": 9
-    },
-    "chocolate": {
-        "name": "Ferrero Rocher",
-        "health": 6
-    },
-    "mala": {
-        "name": "Mala",
-        "health": 4
-    },
-}
+food_data = data.load("food.json")
 
 class Food:
     def __init__(self, name: str, health: int):

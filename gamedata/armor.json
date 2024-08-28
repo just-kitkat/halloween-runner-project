@@ -1,0 +1,32 @@
+{
+    "leather": {
+        "name": "Leather Tunic",
+        "protection": 20,
+        "durability": null,
+        "description": "A very very old piece of leather. Seems to belong to some sort of servant..."
+    },
+    "chainmail": {
+        "name": "Chainmail Tunic",
+        "protection": 30,
+        "durability": null,
+        "description": "Used to be bling bling shiny. Lightweight but useful."
+    },
+    "iron": {
+        "name": "Iron Breastplate",
+        "protection": 50,
+        "durability": null,
+        "description": "This massive piece of armour will protect you from the worst of hits..."
+    },
+    "": {
+        "name": "Iron helmet",
+        "protection": 10,
+        "durability": null,
+        "description": "This head gear will serve you well"
+    },
+    "white tshirt": {
+        "name": "White T-shirt",
+        "protection": 0,
+        "durability": null,
+        "description": "This fancy piece of fabric provides warmth from the cold, but no combat protection at all..."
+    }
+}
