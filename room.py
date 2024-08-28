@@ -36,9 +36,6 @@ class Room:
         """Return a tuple to avoid the original list getting modified."""
         return tuple(self.next_rooms)
 
-    def get_num_next_rooms(self):
-        return len(self.next_rooms)
-
 
 class Dungeon:
 
@@ -55,9 +52,6 @@ class Dungeon:
 
     def get_room_type_display(self):
         return self.current_room.get_type_display()
-
-    def get_nums_next_rooms(self):
-        return self.current_room.get_num_next_rooms()
 
     def get_room_intro_message(self):
         room_type = self.current_room.type
