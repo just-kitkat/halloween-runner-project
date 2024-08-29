@@ -41,7 +41,9 @@ class Combatant:
         return self.health <= 0
 
     def accuracy(self) -> int:
-        """Likelihood of a hit, out of 100"""
+        """accuracy is a integer from 1-100,
+        acts as percentage chance of missing.
+        """
         return self.weapon.accuracy if self.weapon else 0
 
     def damage(self) -> int:

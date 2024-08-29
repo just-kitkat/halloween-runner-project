@@ -2,6 +2,8 @@ import random
 
 import data
 
+armour_data = data.load("armor.json")
+
 
 class Armour:
 
@@ -20,8 +22,6 @@ class Armour:
         return infostr
 
 
-armour_data = data.load("armor.json")
-
 def create_armour(label: str) -> Armour:
     data = armour_data[label]
     return Armour(data)
@@ -34,15 +34,3 @@ def create_random_armour() -> Armour:
 
 def all_armour():
     return list(armour_data.keys())
-
-
-"""
-Class helmet
-reduces crit chance
-Class chestplate
-dmg reduction
-Class leggings
-dmg reduction
-Class boots
-more number of moves, "agility"
-"""
