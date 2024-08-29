@@ -78,15 +78,7 @@ def show_monster_info(name: str, type: str) -> None:
 
 
 def show_item_info(item_: item.Item) -> None:
-    if isinstance(item_, item.Weapon):
-        itemtype = "weapon"
-    elif isinstance(item_, item.Armor):
-        itemtype = "armor"
-    elif isinstance(item_, item.Food):
-        itemtype = "food"
-    else:
-        itemtype = "item"
-    print(f"You found {a_or_an(itemtype)} in the room!")
+    print(f"You found {a_or_an(item_.type)} in the room!")
     print(item_.info())
     short_pause()
 

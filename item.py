@@ -9,6 +9,8 @@ armor_data = data.load("armor.json")
 
 class Item:
     """Superclass for all items in the game."""
+    type = "item"
+
     def __init__(self, name: str):
         self.name = name
 
@@ -16,7 +18,9 @@ class Item:
         infostr = f"Name: {self.name}"
         return infostr
 
+
 class Armor(Item):
+    type = "armor"
 
     def __init__(self, data):
         super().__init__(data["name"])
@@ -33,6 +37,7 @@ class Armor(Item):
 
 
 class Food(Item):
+    type = "food"
 
     def __init__(self, name: str, health: int):
         super().__init__(name)
@@ -40,6 +45,7 @@ class Food(Item):
 
 
 class Weapon(Item):
+    type = "weapon"
 
     def __init__(self, data: dict):
         super().__init__(data["name"])
