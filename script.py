@@ -7,7 +7,6 @@ Functions for:
 """
 import time
 
-import battle
 import combat
 import data
 import introduction
@@ -20,12 +19,11 @@ import runner
 def pause() -> None:
     time.sleep(1.5)
 
-def prompt_player_choice(
-    prompt: str,
-    choices: dict[str, str],
-    question: str = "Your choice: ",
-    validate: bool = True
-):
+
+def prompt_player_choice(prompt: str,
+                         choices: dict[str, str],
+                         question: str = "Your choice: ",
+                         validate: bool = True):
     """Prompts the player to make a choice.
     
     Arguments:
@@ -61,12 +59,14 @@ def show_room_info(name: str, message: str) -> None:
     input('Press enter to continue: ')
     print()
 
+
 def show_monster_info(name: str, type: str) -> None:
     """Display the monster information."""
     print(f"There is a {type} here...")
     pause()
     print("It's name is", name)
     pause()
+
 
 def show_item_info(item_: item.Item) -> None:
     if isinstance(item_, item.Weapon):
@@ -75,12 +75,14 @@ def show_item_info(item_: item.Item) -> None:
         itemtype = "armor"
     elif isinstance(item_, item.Food):
         itemtype = "food"
-    a_or_an_item = f"an {itemtype}" if itemtype[0] in "aeiou" else f"a {itemtype}"
+    a_or_an_item = f"an {itemtype}" if itemtype[
+        0] in "aeiou" else f"a {itemtype}"
     print(f"You found {a_or_an_item} in the room!")
     print(item_.info())
     time.sleep(1)
 
-def show_strike_info(result: battle.StrikeResult) -> None:
+
+def show_strike_info(result: combat.StrikeResult) -> None:
     """Display information about the outcome of the battle strike"""
     if not result.hit:
         print(f"{result.attacker_name}'s attack missed!")
@@ -89,12 +91,12 @@ def show_strike_info(result: battle.StrikeResult) -> None:
         f"{result.attacker_name} attacked {result.defender_name} with \"{result.attacker_weapon}\", dealing {result.damage} damage"
     )
     if result.reduction:
-        print(f"{result.defender_name}'s armour protected them from {result.reduction} damage!")
+        print(
+            f"{result.defender_name}'s armour protected them from {result.reduction} damage!"
+        )
 
-def show_item_result(
-        item_: item.Item,
-        choice: str | None = None
-):
+
+def show_item_result(item_: item.Item, choice: str | None = None):
     if isinstance(item_, item.Weapon):
         if choice == 'pick':
             print(f"You took the {item_.name}")
@@ -125,16 +127,20 @@ def before_intro():
     )
     time.sleep(5)
 
+
 def intro():
     start = introduction.display_startingmsg()
     return start
 
+
 def no_monsters():
-print("There are no monsters in this room!")
+    print("There are no monsters in this room!")
+
 
 def game_over():
     pause()
     print("You died...")
+
 
 def battle_won(game):
     pause()
@@ -143,16 +149,15 @@ def battle_won(game):
     give_reward(game, "weapon", autopickup=False)
     give_reward(game, "armour", autopickup=False)
 
-def run_battle_loop(
-        player: combat.Player,
-        enemy: combat.Combatant
-) -> None:
+
+def run_battle_loop(player: combat.Player, enemy: combat.Combatant) -> None:
     """Run battle loop until either player or enemy is dead."""
-    room_battle = battle.Battle(player, enemy)
+    room_battle = combat.Battle(player, enemy)
     while not room_battle.is_ended():
         for result in room_battle.exchange():
             show_strike_info(result)
         input("Press enter to continue: ")
+
 
 def choose_next_room(game: runner.Game) -> str:
     """Menu where player chooses next room.
@@ -172,8 +177,9 @@ def choose_next_room(game: runner.Game) -> str:
         prompt=prompt,
         choices=choices,
         question="Which room does your heart desire: ",
-        validate=True
-    )
+        validate=True)
+    return choice
+
 
 def boss_fight(player: combat.Player):
     """Lead-up to the boss fight, plus boss fight"""
@@ -193,6 +199,7 @@ def boss_fight(player: combat.Player):
         print(msg)
         time.sleep(5)
 
+
 def give_reward(game: runner.Game, reward: str, autopickup: bool = True):
     """Macro function to handle player reward after fight."""
     if reward == "food":
@@ -209,8 +216,7 @@ def give_reward(game: runner.Game, reward: str, autopickup: bool = True):
         choice = prompt_player_choice(
             prompt=f"Do you want to pick up this {reward}?",
             choices={"pick": f"Pick up the {reward}"},
-            validate=False
-        )
+            validate=False)
     else:
         choice = None
     # Handle player choice (if any), show result of item
