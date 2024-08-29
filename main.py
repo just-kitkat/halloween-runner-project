@@ -3,6 +3,7 @@ import introduction
 import player
 import time
 from boss import boss_fight
+import battle
 import food
 import monster
 import armour
@@ -38,16 +39,10 @@ class Game:
         else:
             raise TypeError(f"{item}: Unrecgonized item type")
 
-    def clear_room(self) -> bool | None:
-        """Have the player fight the monster in the current room, if there is one.
-        Return the outcome of battle.
-        """
-        monster = self.get_current_room_monster()
-        outcome = self.player.fight_monster(monster)
-        if monster:
-            self.rooms_cleared += 1
+    def clear_room(self) -> None:
+        """Assumes the player won the battle, clear the current room."""
+        self.rooms_cleared += 1
         self.dungeon.clear_room()
-        return outcome
 
 
 def show_room_info(name: str, message: str) -> None:
@@ -77,6 +72,17 @@ def show_item_info(item: weapon.Weapon | armour.Armour | food.Food) -> None:
     print(f"You found {a_or_an_item} in the room!")
     print(item.info())
     time.sleep(1)
+
+def show_strike_info(result: battle.StrikeResult) -> None:
+    """Display information about the outcome of the battle strike"""
+    if not result.hit:
+        print(f"{result.attacker_name}'s attack missed!")
+        return
+    print(
+        f"{result.attacker_name} attacked {result.defender_name} with \"{result.attacker_weapon}\", dealing {result.damage} damage"
+    )
+    if result.reduction:
+        print(f"{result.defender_name}'s armour protected them from {result.reduction} damage!")
 
 def show_item_result(
         game: Game,
@@ -130,6 +136,22 @@ def intro():
     start = introduction.display_startingmsg()
     return start
 
+def game_over():
+    pause()
+    print("You died...")
+    exit()
+
+def no_monsters():
+    print("There are no monsters in this room!")
+
+def battle_won(game):
+    pause()
+    print("You won the fight!\n")
+    give_reward(game, "food")
+    give_reward(game, "weapon", autopickup=False)
+    give_reward(game, "armour", autopickup=False)
+
+
 def main():
     # Continuation of storyline from blackout
     print("You wake up and find youself in a mysterious place...\n")
@@ -164,19 +186,17 @@ def main():
                 name=monster.get_name(),
                 type=monster.get_type()
             )
-        outcome_won = game.clear_room()
-        if not outcome_won:  # win may be True, False or None
-            pause()
-            print("You died...")
-            break
-        if outcome_won is not None:
-            pause()
-            print("You won the fight!\n")
-            give_reward(game, "food")
-            give_reward(game, "weapon", autopickup=False)
-            give_reward(game, "armour", autopickup=False)
-
-        print()
+            room_battle = battle.Battle(game.player, monster)
+            while not room_battle.is_ended():
+                for result in room_battle.exchange():
+                    show_strike_info(result)
+            if game.player.is_dead():
+                game_over()
+            elif monster.is_dead():
+                battle_won(game)
+                game.clear_room()
+        else:
+            no_monsters()
         rooms = game.dungeon.get_next_rooms()
         prompt = f"There are {len(rooms)} rooms to enter."
         choices = {
