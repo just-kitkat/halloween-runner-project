@@ -2,6 +2,9 @@
 
 Functions and classes that encapsulate battle rules for the game.
 """
+import math
+import random
+
 import monster
 import player
 import weapon
@@ -14,13 +17,16 @@ class Battle:
 
     def strike(self, attacker, defender):
         """A single blow by an attacker to a defender."""
-        lst = attacker.weapon.attack(defender, defender.armor.protection)
-        bool = lst[0]
-        if bool:
-            print(
-                f"{attacker.name} attacked {defender.name} with \"{attacker.weapon.name}\", dealing {lst[1]} damage"
-            )
-            if lst[2] != 0:
-                print(f"{defender.name}'s armour protected you from {lst[2]} damage!")
+        if random.randint(1, 100) > attacker.accuracy():
+            #attack missed
+            return [False, 0]
+        #attack hit
+        damage = attacker.damage()
+        if damage == 1:
+            reduction = 0
+            return [True, damage, 0]
         else:
-            print(f"{attacker.name}\'s attack missed!")
+            reduction = math.ceil(
+                damage * defender.defense() / 100
+            )
+            return [True, damage, reduction]
