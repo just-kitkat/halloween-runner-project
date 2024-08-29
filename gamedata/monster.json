@@ -1,0 +1,60 @@
+{
+    "skeleton": {
+        "type": "Skeleton",
+        "health": 3,
+        "weapon label": ["fists", "crude bow", "crude bow", "cutlery dagger"]
+    },
+    "zombie": {
+        "type": "Zombie",
+        "health": 3,
+        "weapon label":
+        ["fists", "cutlery dagger", "wooden spear", "wooden sword"]
+    },
+    "vampire": {
+        "type": "Vampire",
+        "health": 7,
+        "weapon label":
+        ["wooden sword", "wooden sword", "cutlery dagger", "ornate dagger"]
+    },
+    "ghost": {
+        "type": "Ghost",
+        "health": 2,
+        "weapon label": ["fists", "fists", "cutlery dagger"]
+    },
+    "witch": {
+        "type": "Witch",
+        "health": 3,
+        "weapon label": ["magic staff"]
+    },
+    "werewolf": {
+        "type": "Werewolf",
+        "health": 6,
+        "weapon label": ["claws"]
+    },
+    "mother": {
+        "type": "Mother",
+        "health": 4,
+        "weapon label": ["cane", "slipper"]
+    },
+    "father": {
+        "type": "Father",
+        "health": 5,
+        "weapon label": ["belt", "taxes"]
+    },
+    "headless horseman": {
+        "type": "Headless Horseman",
+        "health": 7,
+        "weapon label":
+        ["horseman head", "horseman head", "horseman head", "ornate dagger"]
+    },
+    "frankenstein monster": {
+        "type": "Frankenstein's Monster",
+        "health": 14,
+        "weapon label": ["fists"]
+    },
+    "boss": {
+        "type": "Boss",
+        "health": [30, 60],
+        "weapon label": ["mega sword"]
+    }
+}
