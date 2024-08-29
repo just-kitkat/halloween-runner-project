@@ -7,7 +7,6 @@ import random
 
 import monster
 import player
-import weapon
 
 
 class StrikeResult:

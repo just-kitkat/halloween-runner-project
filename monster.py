@@ -40,57 +40,17 @@ class Monster:
     def defense(self) -> int:
         return 0
 
-    #damage is done inside weapon class
-    def monster_attack_player(self, player):
-        lst = self.weapon.attack(player, player.armor.protection)
-        bool = lst[0]
-        if bool:
-            print(
-                f"{self.name}\'s attacked you with \"{self.weapon.name}\", dealing {lst[1]} damage"
-            )
-            if lst[2] != 0:
-                print(f"Your armour protected you from {lst[2]} damage!")
-        else:
-            print(f"{self.name}\'s attack missed!")
-        print("Your health:", max(0, player.get_health()))
-
-    def player_attack_monster(self, player):
-        lst = player.weapon.attack(self)
-        bool = lst[0]
-        if bool:
-            print(
-                f"You attacked {self.name} with \"{player.weapon.name}\", dealing {lst[1]} damage."
-            )
-        else:
-            print("Your attack missed!")
-        print(f"{self.name}'s health:", max(0, self.get_health()))
-
-    def reduce_health(self, hp):
-        self.health -= hp
-
-    def get_name(self):
-        return self.name
-
-    def get_health(self):
-        return self.health
-
-    def get_type(self):
-        return self.type
-
 
 def create_monster(label: str) -> Monster:
     data = monster_data[label]
     return Monster(data)
 
-
 def create_random_monster() -> Monster:
     monster = random.choice(all_monsters())
     return create_monster(monster)
 
-
 def create_boss() -> Monster:
     return Monster(boss_data, boss=True)
-
 
 def all_monsters():
     return list(monster_data.keys())
