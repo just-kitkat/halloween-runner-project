@@ -2,10 +2,10 @@ import random
 
 import data
 
-armour_data = data.load("armor.json")
+armor_data = data.load("armor.json")
 
 
-class Armour:
+class Armor:
 
     def __init__(self, data):
         self.name = data["name"]
@@ -22,15 +22,15 @@ class Armour:
         return infostr
 
 
-def create_armour(label: str) -> Armour:
-    data = armour_data[label]
-    return Armour(data)
+def create_armor(label: str) -> Armor:
+    data = armor_data[label]
+    return Armor(data)
 
 
-def create_random_armour() -> Armour:
-    armour = random.choice(all_armour())
-    return create_armour(armour)
+def create_random_armor() -> Armor:
+    armor = random.choice(all_armor())
+    return create_armor(armor)
 
 
-def all_armour():
-    return list(armour_data.keys())
+def all_armor():
+    return list(armor_data.keys())

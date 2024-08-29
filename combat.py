@@ -4,7 +4,7 @@ Base classes and helper functions for combat implementation.
 """
 import random
 
-import armour
+import armor
 import data
 import weapon
 
@@ -87,7 +87,7 @@ class Player(Combatant):
         if isinstance(item, weapon.Weapon):
             self.unequip_weapon()
             self.weapon = item
-        elif isinstance(item, armour.Armour):
+        elif isinstance(item, armor.Armor):
             self.items.append(self.armor)
             self.armor = item
         else:
@@ -104,7 +104,7 @@ def generate_name():
 def create_player(name: str) -> Player:
     player = Player(name=name, health=100)
     player.equip_item(weapon.create_weapon("fists"))
-    player.equip_item(armour.create_armour("white tshirt"))
+    player.equip_item(armor.create_armor("white tshirt"))
     return player
 
 def create_monster(data: dict, boss=False) -> Monster:
