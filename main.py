@@ -1,11 +1,9 @@
+import data
 import room
 import introduction
-import player
 import time
-from boss import boss_fight
 import battle
 import food
-import monster
 import armour
 import weapon
 import text
@@ -129,6 +127,28 @@ def give_reward(game: Game, reward: str, autopickup: bool = True):
     if choice == "pick":
         game.take_item(item)
     show_item_result(game, item, choice)
+
+def boss_fight(player):
+    boss_entry = data.load("boss.json")
+    for msg in boss_entry["enter_room"]:
+        print(msg)
+        time.sleep(3)
+
+    boss = combat.create_boss()
+    final_battle = battle.Battle(player, boss)
+    while not final_battle.is_ended():
+        for result in final_battle.exchange():
+            show_strike_info(result)
+        input("Press enter to continue: ")
+
+    if player.is_dead():
+        msgs = boss_entry["player_win"]
+    elif boss.is_dead():
+        msgs = boss_entry["player_lose"]
+    for msg in msgs:
+        print(msg)
+        time.sleep(5)
+
 
 def pause() -> None:
     time.sleep(1.5)
