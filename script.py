@@ -16,9 +16,14 @@ import runner
 
 ## Helper functions
 
-def pause() -> None:
+def short_pause() -> None:
     time.sleep(1.5)
 
+def medium_pause() -> None:
+    time.sleep(3)
+
+def long_pause() -> None:
+    long_pause()
 
 def prompt_player_choice(prompt: str,
                          choices: dict[str, str],
@@ -53,9 +58,9 @@ def prompt_player_choice(prompt: str,
 def show_room_info(name: str, message: str) -> None:
     """Display the room information."""
     print(f"==== THE {name} ====")
-    pause()
+    short_pause()
     print(message)
-    pause()
+    short_pause()
     input('Press enter to continue: ')
     print()
 
@@ -63,9 +68,9 @@ def show_room_info(name: str, message: str) -> None:
 def show_monster_info(name: str, type: str) -> None:
     """Display the monster information."""
     print(f"There is a {type} here...")
-    pause()
+    short_pause()
     print("It's name is", name)
-    pause()
+    short_pause()
 
 
 def show_item_info(item_: item.Item) -> None:
@@ -79,7 +84,7 @@ def show_item_info(item_: item.Item) -> None:
         0] in "aeiou" else f"a {itemtype}"
     print(f"You found {a_or_an_item} in the room!")
     print(item_.info())
-    time.sleep(1)
+    short_pause()
 
 
 def show_strike_info(result: combat.StrikeResult) -> None:
@@ -109,7 +114,7 @@ def show_item_result(item_: item.Item, choice: str | None = None):
             print(f"You ditched the {item_.name}")
     elif isinstance(item_, item.Food):
         print(f"You ate the {item_.name}, gaining {item_.health} health!")
-        time.sleep(3)
+        medium_pause()
 
 
 # Scripted functions
@@ -117,15 +122,15 @@ def show_item_result(item_: item.Item, choice: str | None = None):
 def before_intro():
     # Continuation of storyline from blackout
     print("You wake up and find youself in a mysterious place...\n")
-    time.sleep(5)
+    long_pause()
     print(
         "You decide to explore the mansion and find out more about this infamous place...\n"
     )
-    time.sleep(5)
+    long_pause()
     print(
         "You ready yourself against the dangers ahead, and start analysing your surroundings...\n"
     )
-    time.sleep(5)
+    long_pause()
 
 
 def intro():
@@ -138,12 +143,12 @@ def no_monsters():
 
 
 def game_over():
-    pause()
+    short_pause()
     print("You died...")
 
 
 def battle_won(game):
-    pause()
+    short_pause()
     print("You won the fight!\n")
     give_reward(game, "food")
     give_reward(game, "weapon", autopickup=False)
@@ -171,7 +176,7 @@ def choose_next_room(game: runner.Game) -> str:
     }
     if game.dungeon.has_previous_room:
         choices['back'] = "Go back to the previous room"
-    pause()
+    short_pause()
     # Get player choice
     choice = prompt_player_choice(
         prompt=prompt,
@@ -186,7 +191,7 @@ def boss_fight(player: combat.Player):
     boss_entry = data.load("boss.json")
     for msg in boss_entry["enter_room"]:
         print(msg)
-        time.sleep(3)
+        medium_pause()
 
     boss = combat.create_boss()
     run_battle_loop(player, boss)
@@ -197,7 +202,7 @@ def boss_fight(player: combat.Player):
         msgs = boss_entry["player_lose"]
     for msg in msgs:
         print(msg)
-        time.sleep(5)
+        long_pause()
 
 
 def give_reward(game: runner.Game, reward: str, autopickup: bool = True):
