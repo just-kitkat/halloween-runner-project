@@ -4,9 +4,8 @@ Base classes and helper functions for combat implementation.
 """
 import random
 
-import armor
 import data
-import weapon
+import item
 
 monster_data = data.load("monster.json")
 boss_data = monster_data.pop("boss")
@@ -83,13 +82,13 @@ class Player(Combatant):
             self.items.append(self.weapon)
         self.weapon = None
 
-    def equip_item(self, item) -> None:
-        if isinstance(item, weapon.Weapon):
+    def equip_item(self, item_) -> None:
+        if isinstance(item_, item.Weapon):
             self.unequip_weapon()
-            self.weapon = item
-        elif isinstance(item, armor.Armor):
+            self.weapon = item_
+        elif isinstance(item_, item.Armor):
             self.items.append(self.armor)
-            self.armor = item
+            self.armor = item_
         else:
             pass
 
@@ -103,8 +102,8 @@ def generate_name():
 
 def create_player(name: str) -> Player:
     player = Player(name=name, health=100)
-    player.equip_item(weapon.create_weapon("fists"))
-    player.equip_item(armor.create_armor("white tshirt"))
+    player.equip_item(item.create_weapon("fists"))
+    player.equip_item(item.create_armor("white tshirt"))
     return player
 
 def create_monster(data: dict, boss=False) -> Monster:
@@ -113,7 +112,7 @@ def create_monster(data: dict, boss=False) -> Monster:
     else:
         name = generate_name()
     monster = Monster(name, data["health"], data["type"])
-    monster.weapon = weapon.create_weapon(random.choice(data["weapon label"]))
+    monster.weapon = item.create_weapon(random.choice(data["weapon label"]))
     return monster
 
 def create_random_monster() -> Monster:
