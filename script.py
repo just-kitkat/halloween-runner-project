@@ -23,7 +23,7 @@ def medium_pause() -> None:
     time.sleep(3)
 
 def long_pause() -> None:
-    long_pause()
+    time.sleep(5)
 
 def a_or_an(word: str) -> str:
     """Returns the correct article for a given word."""
