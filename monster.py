@@ -31,6 +31,15 @@ class Monster:
         self.health = data["health"]
         self.type = data["type"]
 
+    def is_dead(self) -> bool:
+        return self.health <= 0
+
+    def damage(self) -> int:
+        return self.weapon.damage if self.weapon else 0
+
+    def defense(self) -> int:
+        return 0
+
     #damage is done inside weapon class
     def monster_attack_player(self, player):
         lst = self.weapon.attack(player, player.armor.protection)
