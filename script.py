@@ -25,6 +25,10 @@ def medium_pause() -> None:
 def long_pause() -> None:
     long_pause()
 
+def a_or_an(word: str) -> str:
+    """Returns the correct article for a given word."""
+    return f"an {word}" if word[0] in "aeiou" else f"a {word}"
+
 def prompt_player_choice(prompt: str,
                          choices: dict[str, str],
                          question: str = "Your choice: ",
@@ -80,9 +84,9 @@ def show_item_info(item_: item.Item) -> None:
         itemtype = "armor"
     elif isinstance(item_, item.Food):
         itemtype = "food"
-    a_or_an_item = f"an {itemtype}" if itemtype[
-        0] in "aeiou" else f"a {itemtype}"
-    print(f"You found {a_or_an_item} in the room!")
+    else:
+        itemtype = "item"
+    print(f"You found {a_or_an(itemtype)} in the room!")
     print(item_.info())
     short_pause()
 
