@@ -1,7 +1,7 @@
 import random
 
+import combat
 import data
-import monster
 
 msg = data.load("room.json")
 
@@ -27,7 +27,7 @@ class Room:
         self.previous_room = previous_room
         self.cleared = False
         #updated line below
-        self.monster = monster.create_random_monster()
+        self.monster = combat.create_random_monster()
         if previous_room is None:
             self.monster = None
 

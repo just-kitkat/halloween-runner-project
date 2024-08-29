@@ -9,6 +9,7 @@ import monster
 import armour
 import weapon
 import text
+import combat
 
 TOTAL_ROOMS = 5
 
@@ -18,7 +19,7 @@ class Game:
     def __init__(self, name):
         self.rooms_cleared = 0
         self.dungeon = room.Dungeon()
-        self.player = player.Player(name)
+        self.player = combat.create_player(name)
 
     def get_current_room(self) -> str:
         return self.dungeon.get_room_type().upper()
