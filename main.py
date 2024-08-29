@@ -25,7 +25,7 @@ class Game:
     def get_current_room_message(self) -> str:
         return self.dungeon.get_room_intro_message()
 
-    def get_current_room_monster(self) -> monster.Monster:
+    def get_current_room_monster(self) -> combat.Monster:
         return self.dungeon.get_monster()
 
     def take_item(self, item: weapon.Weapon | armour.Armour | food.Food) -> None:

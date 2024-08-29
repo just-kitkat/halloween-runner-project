@@ -46,7 +46,7 @@ class Dungeon:
         self.current_room = Room(None)
         self.number_of_rooms_visited = 0
 
-    def get_monster(self) -> monster.Monster:
+    def get_monster(self) -> combat.Monster:
         return self.current_room.monster
 
     def get_next_rooms(self) -> list[Room]:
