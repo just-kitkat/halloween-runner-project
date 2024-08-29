@@ -8,6 +8,7 @@ import armour
 import weapon
 import text
 import combat
+import item
 
 TOTAL_ROOMS = 5
 
@@ -28,13 +29,13 @@ class Game:
     def get_current_room_monster(self) -> combat.Monster:
         return self.dungeon.get_monster()
 
-    def take_item(self, item: weapon.Weapon | armour.Armour | food.Food) -> None:
-        if isinstance(item, weapon.Weapon):
-            self.player.weapon = item
-        elif isinstance(item, armour.Armour):
-            self.player.armor = item
-        elif isinstance(item, food.Food):
-            self.player.add_health(item.health)
+    def take_item(self, item_: item.Weapon | item.Armor | item.Food) -> None:
+        if isinstance(item_, item.Weapon):
+            self.player.weapon = item_
+        elif isinstance(item_, item.Armor):
+            self.player.armor = item_
+        elif isinstance(item_, item.Food):
+            self.player.add_health(item_.health)
         else:
             raise TypeError(f"{item}: Unrecgonized item type")
 
@@ -60,16 +61,16 @@ def show_monster_info(name: str, type: str) -> None:
     print("It's name is", name)
     pause()
 
-def show_item_info(item: weapon.Weapon | armour.Armour | food.Food) -> None:
-    if isinstance(item, weapon.Weapon):
+def show_item_info(item_: item.Weapon | item.Armor | item.Food) -> None:
+    if isinstance(item_, item.Weapon):
         itemtype = "weapon"
-    elif isinstance(item, armour.Armour):
+    elif isinstance(item_, item.Armor):
         itemtype = "armour"
-    elif isinstance(item, food.Food):
+    elif isinstance(item_, item.Food):
         itemtype = "food"
     a_or_an_item = f"an {itemtype}" if itemtype[0] in "aeiou" else f"a {itemtype}"
     print(f"You found {a_or_an_item} in the room!")
-    print(item.info())
+    print(item_.info())
     time.sleep(1)
 
 def show_strike_info(result: battle.StrikeResult) -> None:
@@ -85,35 +86,35 @@ def show_strike_info(result: battle.StrikeResult) -> None:
 
 def show_item_result(
         game: Game,
-        item: weapon.Weapon | armour.Armour | food.Food,
+        item_: item.Weapon | item.Armor | item.Food,
         choice: str | None = None
 ):
-    if isinstance(item, weapon.Weapon):
+    if isinstance(item_, item.Weapon):
         if choice == 'pick':
-            print(f"You took the {item.name}")
+            print(f"You took the {item_.name}")
         else:
-            print(f"You ditched the {item.name}")
-    elif isinstance(item, armour.Armour):
+            print(f"You ditched the {item_.name}")
+    elif isinstance(item_, item.Armor):
         if choice == 'pick':
-            print(f"You took the {item.name}")
+            print(f"You took the {item_.name}")
         else:
-            print(f"You ditched the {item.name}")
-    elif isinstance(item, food.Food):
-        print(f"You ate the {item.name}, gaining {item.health} health!")
+            print(f"You ditched the {item_.name}")
+    elif isinstance(item_, item.Food):
+        print(f"You ate the {item_.name}, gaining {item_.health} health!")
         print(f"Your health: {game.player.get_health()}")
         time.sleep(3)
 
 def give_reward(game: Game, reward: str, autopickup: bool = True):
     """Macro function to handle player reward after fight."""
     if reward == "food":
-        item = food.random_food()
+        item_ = item.random_food()
     elif reward == "weapon":
-        item = weapon.create_random_weapon()
+        item_ = item.random_weapon()
     elif reward == "armour":
-        item = armour.create_random_armour()
+        item_ = item.random_armor()
     else:
         raise ValueError(f"Invalid reward: {reward}")
-    show_item_info(item)
+    show_item_info(item_)
     # Prompt player to pick up item (if required)
     if not autopickup:
         choice = text.prompt_player_choice(
@@ -125,8 +126,8 @@ def give_reward(game: Game, reward: str, autopickup: bool = True):
         choice = None
     # Handle player choice (if any), show result of item
     if choice == "pick":
-        game.take_item(item)
-    show_item_result(game, item, choice)
+        game.take_item(item_)
+    show_item_result(game, item_, choice)
 
 def boss_fight(player):
     boss_entry = data.load("boss.json")
@@ -204,8 +205,8 @@ def main():
         monster = game.get_current_room_monster()
         if monster:
             show_monster_info(
-                name=monster.get_name(),
-                type=monster.get_type()
+                name=monster.name,
+                type=monster.type
             )
             room_battle = battle.Battle(game.player, monster)
             while not room_battle.is_ended():
