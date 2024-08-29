@@ -190,6 +190,7 @@ def main():
             while not room_battle.is_ended():
                 for result in room_battle.exchange():
                     show_strike_info(result)
+                input("Press enter to continue: ")
             if game.player.is_dead():
                 game_over()
             elif monster.is_dead():
