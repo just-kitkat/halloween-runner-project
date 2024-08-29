@@ -1,41 +1,14 @@
-import data
-import room
-import introduction
 import time
+
 import battle
-import text
 import combat
+import data
+import introduction
 import item
+import runner
+import text
 
 TOTAL_ROOMS = 5
-
-
-class Game:
-
-    def __init__(self, name):
-        self.rooms_cleared = 0
-        self.dungeon = room.Dungeon()
-        self.player = combat.create_player(name)
-
-    def get_current_room(self) -> str:
-        return self.dungeon.get_room_type().upper()
-
-    def get_current_room_message(self) -> str:
-        return self.dungeon.get_room_intro_message()
-
-    def get_current_room_monster(self) -> combat.Monster:
-        return self.dungeon.get_monster()
-
-    def take_item(self, item_: item.Item) -> None:
-        if isinstance(item_, item.Food):
-            self.player.add_health(item_.health)
-        else:
-            self.player.take_item(item_)
-
-    def clear_room(self) -> None:
-        """Assumes the player won the battle, clear the current room."""
-        self.rooms_cleared += 1
-        self.dungeon.clear_room()
 
 
 def show_room_info(name: str, message: str) -> None:
@@ -78,7 +51,7 @@ def show_strike_info(result: battle.StrikeResult) -> None:
         print(f"{result.defender_name}'s armour protected them from {result.reduction} damage!")
 
 def show_item_result(
-        game: Game,
+        game: runner.Game,
         item_: item.Item,
         choice: str | None = None
 ):
@@ -97,7 +70,7 @@ def show_item_result(
         print(f"Your health: {game.player.get_health()}")
         time.sleep(3)
 
-def give_reward(game: Game, reward: str, autopickup: bool = True):
+def give_reward(game: runner.Game, reward: str, autopickup: bool = True):
     """Macro function to handle player reward after fight."""
     if reward == "food":
         item_ = item.random_food()
@@ -181,7 +154,7 @@ def main():
     time.sleep(5)
 
     name = intro()
-    game = Game(name)
+    game = runner.Game(name)
 
     # Main game loop
     while True:
