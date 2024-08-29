@@ -5,20 +5,20 @@ Functions and classes that encapsulate battle rules for the game.
 import math
 import random
 
-import monster
-import player
+import combat
 
 
 class StrikeResult:
+
     def __init__(
-            self,
-            attacker_name: str,
-            attacker_weapon: str,
-            defender_name: str,
-            defender_weapon: str,
-            hit: bool,
-            damage: int,
-            reduction: int,
+        self,
+        attacker_name: str,
+        attacker_weapon: str,
+        defender_name: str,
+        defender_weapon: str,
+        hit: bool,
+        damage: int,
+        reduction: int,
     ):
         self.attacker_name = attacker_name
         self.attacker_weapon = attacker_weapon
@@ -29,8 +29,9 @@ class StrikeResult:
         self.reduction = reduction
 
 
-class Battle: 
-    def __init__(self, fighter1: player.Player, fighter2: monster.Monster):
+class Battle:
+
+    def __init__(self, fighter1: combat.Combatant, fighter2: combat.Combatant):
         self.fighter1 = fighter1
         self.fighter2 = fighter2
 
@@ -38,7 +39,9 @@ class Battle:
         """Battle ends when either fighter dies."""
         return self.fighter1.is_dead() or self.fighter2.is_dead()
 
-    def strike(self, attacker, defender) -> StrikeResult:
+    def strike(self,
+               attacker: combat.Combatant,
+               defender: combat.Combatant) -> StrikeResult:
         """A single blow by an attacker to a defender."""
         if random.randint(1, 100) > attacker.accuracy():
             #attack missed
@@ -56,9 +59,7 @@ class Battle:
         if damage == 1:
             reduction = 0
         else:
-            reduction = math.ceil(
-                damage * defender.defense() / 100
-            )
+            reduction = math.ceil(damage * defender.defense() / 100)
         return StrikeResult(
             attacker_name=attacker.name,
             attacker_weapon=attacker.weapon.name,
