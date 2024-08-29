@@ -1,5 +1,6 @@
 import random
 
+from combat import Combatant
 import data
 from weapon import create_weapon
 
@@ -21,24 +22,14 @@ def monster_name_generation():
     return monster_name
 
 
-class Monster:
+class Monster(Combatant):
 
     def __init__(self, data, boss=False):
-        self.name = monster_name_generation()
+        super().__init__(monster_name_generation(), data["health"])
         if boss:
             self.name = "The Ghost King"
         self.weapon = create_weapon(random.choice(data["weapon label"]))
-        self.health = data["health"]
         self.type = data["type"]
-
-    def is_dead(self) -> bool:
-        return self.health <= 0
-
-    def damage(self) -> int:
-        return self.weapon.damage if self.weapon else 0
-
-    def defense(self) -> int:
-        return 0
 
 
 def create_monster(label: str) -> Monster:
