@@ -12,8 +12,8 @@ boss_data = monster_data.pop("boss")
 min_, max_ = boss_data["health"]
 boss_data["health"] = random.randint(min_, max_)
 names = data.load("names.json")
-first_names = names["first_names"]
-last_names = names["last_names"]
+first_names = names["first_name"]
+last_names = names["last_name"]
 
 
 class Combatant:
