@@ -3,9 +3,6 @@ import room
 import introduction
 import time
 import battle
-import food
-import armour
-import weapon
 import text
 import combat
 import item
