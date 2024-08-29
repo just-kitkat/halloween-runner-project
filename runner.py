@@ -8,7 +8,7 @@ import room
 
 
 class Game:
-
+    """Encapsulates data for the game."""
     def __init__(self, name):
         self.rooms_cleared = 0
         self.dungeon = room.Dungeon()
