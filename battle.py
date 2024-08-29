@@ -35,6 +35,10 @@ class Battle:
         self.fighter1 = fighter1
         self.fighter2 = fighter2
 
+    def is_ended(self) -> bool:
+        """Battle ends when either fighter dies."""
+        return self.fighter1.is_dead() or self.fighter2.is_dead()
+
     def strike(self, attacker, defender) -> StrikeResult:
         """A single blow by an attacker to a defender."""
         if random.randint(1, 100) > attacker.accuracy():
@@ -65,3 +69,23 @@ class Battle:
             damage=damage,
             reduction=reduction,
         )
+
+    def exchange(self) -> list[StrikeResult]:
+        """A single exchange of attacks between the two fighters.
+        Returns the result of the exchange, as a list of StrikeResults.
+        """
+        results = []
+        # Fighter 1 goes first
+        result = self.strike(self.fighter1, self.fighter2)
+        if result.hit:
+            self.fighter2.reduce_health(result.damage - result.reduction)
+        results.append(result)
+        if self.is_ended():
+            return results
+
+        # Fighter2 goes next
+        result = self.strike(self.fighter2, self.fighter1)
+        if result.hit:
+            self.fighter1.reduce_health(result.damage - result.reduction)
+        results.append(result)
+        return results
