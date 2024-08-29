@@ -29,15 +29,11 @@ class Game:
     def get_current_room_monster(self) -> combat.Monster:
         return self.dungeon.get_monster()
 
-    def take_item(self, item_: item.Weapon | item.Armor | item.Food) -> None:
-        if isinstance(item_, item.Weapon):
-            self.player.weapon = item_
-        elif isinstance(item_, item.Armor):
-            self.player.armor = item_
-        elif isinstance(item_, item.Food):
+    def take_item(self, item_: item.Item) -> None:
+        if isinstance(item_, item.Food):
             self.player.add_health(item_.health)
         else:
-            raise TypeError(f"{item}: Unrecgonized item type")
+            self.player.take_item(item_)
 
     def clear_room(self) -> None:
         """Assumes the player won the battle, clear the current room."""
@@ -61,11 +57,11 @@ def show_monster_info(name: str, type: str) -> None:
     print("It's name is", name)
     pause()
 
-def show_item_info(item_: item.Weapon | item.Armor | item.Food) -> None:
+def show_item_info(item_: item.Item) -> None:
     if isinstance(item_, item.Weapon):
         itemtype = "weapon"
     elif isinstance(item_, item.Armor):
-        itemtype = "armour"
+        itemtype = "armor"
     elif isinstance(item_, item.Food):
         itemtype = "food"
     a_or_an_item = f"an {itemtype}" if itemtype[0] in "aeiou" else f"a {itemtype}"
@@ -86,7 +82,7 @@ def show_strike_info(result: battle.StrikeResult) -> None:
 
 def show_item_result(
         game: Game,
-        item_: item.Weapon | item.Armor | item.Food,
+        item_: item.Item,
         choice: str | None = None
 ):
     if isinstance(item_, item.Weapon):
