@@ -40,6 +40,10 @@ class Combatant:
     def is_dead(self) -> bool:
         return self.health <= 0
 
+    def accuracy(self) -> int:
+        """Likelihood of a hit, out of 100"""
+        return self.weapon.accuracy if self.weapon else 0
+
     def damage(self) -> int:
         """Damage dealt to enemy"""
         return self.weapon.damage if self.weapon else 0
@@ -54,7 +58,6 @@ class Monster(Combatant):
     def __init__(self, name: str, health: int, type: str):
         super().__init__(name, health)
         self.type = type
-        self.weapon = create_weapon(random.choice(data["weapon label"]))
 
 
 class Player(Combatant):
